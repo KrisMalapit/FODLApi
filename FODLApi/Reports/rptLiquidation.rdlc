@@ -6,10 +6,10 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.91625in</Width>
+              <Width>1.31213in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.46917in</Width>
+              <Width>1.07329in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>0.9075in</Width>
@@ -2783,7 +2783,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -3533,7 +3532,6 @@
         </TablixRowHierarchy>
         <DataSetName>Liquidation</DataSetName>
         <Top>0.01389in</Top>
-        <Left>0in</Left>
         <Height>1.25in</Height>
         <Width>13.29579in</Width>
         <Style>
@@ -3642,7 +3640,6 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox23</rd:DefaultName>
-          <Left>0in</Left>
           <Height>0.25in</Height>
           <Width>0.55208in</Width>
           <ZIndex>2</ZIndex>
@@ -3672,7 +3669,6 @@
           </Paragraphs>
           <rd:DefaultName>Textbox23</rd:DefaultName>
           <Top>0.25in</Top>
-          <Left>0in</Left>
           <Height>0.25in</Height>
           <Width>0.55208in</Width>
           <ZIndex>3</ZIndex>

@@ -29,6 +29,9 @@ namespace FODLApi.Models
         public int DispenserId { get; set; }
         public int LubeTruckId { get; set; }
         public System.DateTime TransactionDate { get; set; }
+        public System.DateTime TransferDate { get; set; }
+        public string TransferredBy { get; set; }
+        public int OldId { get; set; }
     
         public virtual Dispensers Dispensers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

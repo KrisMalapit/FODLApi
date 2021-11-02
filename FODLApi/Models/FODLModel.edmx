@@ -4,7 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FODLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FODLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
         <EntityType Name="Companies">
           <Key>
             <PropertyRef Name="ID" />
@@ -54,6 +61,16 @@
           <Property Name="FuelCodeDiesel" Type="nvarchar(max)" />
           <Property Name="FuelCodeOil" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="FileUploads">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar(max)" />
+          <Property Name="UploadDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UploadBy" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="FuelOilDetails">
           <Key>
             <PropertyRef Name="Id" />
@@ -66,6 +83,7 @@
           <Property Name="Status" Type="nvarchar(max)" />
           <Property Name="SMR" Type="nvarchar(max)" />
           <Property Name="Signature" Type="nvarchar(max)" />
+          <Property Name="OldId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="FuelOils">
           <Key>
@@ -73,13 +91,16 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ReferenceNo" Type="nvarchar(max)" />
-          <Property Name="Shift" Type="nvarchar" MaxLength="450" />
+          <Property Name="Shift" Type="nvarchar(max)" />
           <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="Status" Type="nvarchar" MaxLength="450" />
+          <Property Name="Status" Type="nvarchar(max)" />
           <Property Name="DispenserId" Type="int" Nullable="false" />
           <Property Name="LubeTruckId" Type="int" Nullable="false" />
           <Property Name="TransactionDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="TransferDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="TransferredBy" Type="nvarchar(max)" />
+          <Property Name="OldId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="FuelOilSubDetails">
           <Key>
@@ -92,6 +113,7 @@
           <Property Name="VolumeQty" Type="int" Nullable="false" />
           <Property Name="FuelOilDetailId" Type="int" Nullable="false" />
           <Property Name="Status" Type="nvarchar(max)" />
+          <Property Name="OldId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Items">
           <Key>
@@ -329,11 +351,13 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="FODLModelStoreContainer">
+          <EntitySet Name="__EFMigrationsHistory" EntityType="Self.__EFMigrationsHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Components" EntityType="Self.Components" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dispensers" EntityType="Self.Dispensers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipments" EntityType="Self.Equipments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileUploads" EntityType="Self.FileUploads" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FuelOilDetails" EntityType="Self.FuelOilDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FuelOils" EntityType="Self.FuelOils" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FuelOilSubDetails" EntityType="Self.FuelOilSubDetails" Schema="dbo" store:Type="Tables" />
@@ -389,8 +413,7 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FODLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -465,6 +488,7 @@
           <NavigationProperty Name="FuelOils" Relationship="Self.FK_FuelOilDetails_FuelOils_FuelOilId" FromRole="FuelOilDetails" ToRole="FuelOils" />
           <NavigationProperty Name="Locations" Relationship="Self.FK_FuelOilDetails_Locations_LocationId" FromRole="FuelOilDetails" ToRole="Locations" />
           <NavigationProperty Name="FuelOilSubDetails" Relationship="Self.FK_FuelOilSubDetails_FuelOilDetails_FuelOilDetailId" FromRole="FuelOilDetails" ToRole="FuelOilSubDetails" />
+          <Property Name="OldId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="FuelOils">
           <Key>
@@ -472,16 +496,19 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ReferenceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Shift" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Shift" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DispenserId" Type="Int32" Nullable="false" />
           <Property Name="LubeTruckId" Type="Int32" Nullable="false" />
           <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="7" />
           <NavigationProperty Name="Dispensers" Relationship="Self.FK_FuelOils_Dispensers_DispenserId" FromRole="FuelOils" ToRole="Dispensers" />
           <NavigationProperty Name="FuelOilDetails" Relationship="Self.FK_FuelOilDetails_FuelOils_FuelOilId" FromRole="FuelOils" ToRole="FuelOilDetails" />
           <NavigationProperty Name="LubeTrucks" Relationship="Self.FK_FuelOils_LubeTrucks_LubeTruckId" FromRole="FuelOils" ToRole="LubeTrucks" />
+          <Property Name="TransferDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="TransferredBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OldId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="FuelOilSubDetails">
           <Key>
@@ -497,6 +524,7 @@
           <NavigationProperty Name="Components" Relationship="Self.FK_FuelOilSubDetails_Components_ComponentId" FromRole="FuelOilSubDetails" ToRole="Components" />
           <NavigationProperty Name="FuelOilDetails" Relationship="Self.FK_FuelOilSubDetails_FuelOilDetails_FuelOilDetailId" FromRole="FuelOilSubDetails" ToRole="FuelOilDetails" />
           <NavigationProperty Name="Items" Relationship="Self.FK_FuelOilSubDetails_Items_ItemId" FromRole="FuelOilSubDetails" ToRole="Items" />
+          <Property Name="OldId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Items">
           <Key>
@@ -799,7 +827,26 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="C__EFMigrationsHistory" EntityType="FODLModel.C__EFMigrationsHistory" />
+          <EntitySet Name="FileUploads" EntityType="FODLModel.FileUploads" />
         </EntityContainer>
+        <EntityType Name="C__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="FileUploads">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UploadBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -863,6 +910,7 @@
           <EntitySetMapping Name="FuelOilDetails">
             <EntityTypeMapping TypeName="FODLModel.FuelOilDetails">
               <MappingFragment StoreEntitySet="FuelOilDetails">
+                <ScalarProperty Name="OldId" ColumnName="OldId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
@@ -877,6 +925,9 @@
           <EntitySetMapping Name="FuelOils">
             <EntityTypeMapping TypeName="FODLModel.FuelOils">
               <MappingFragment StoreEntitySet="FuelOils">
+                <ScalarProperty Name="OldId" ColumnName="OldId" />
+                <ScalarProperty Name="TransferredBy" ColumnName="TransferredBy" />
+                <ScalarProperty Name="TransferDate" ColumnName="TransferDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ReferenceNo" ColumnName="ReferenceNo" />
                 <ScalarProperty Name="Shift" ColumnName="Shift" />
@@ -892,6 +943,7 @@
           <EntitySetMapping Name="FuelOilSubDetails">
             <EntityTypeMapping TypeName="FODLModel.FuelOilSubDetails">
               <MappingFragment StoreEntitySet="FuelOilSubDetails">
+                <ScalarProperty Name="OldId" ColumnName="OldId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TimeInput" ColumnName="TimeInput" />
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
@@ -987,6 +1039,25 @@
                 <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
                 <ScalarProperty Name="DispenserAccess" ColumnName="DispenserAccess" />
                 <ScalarProperty Name="LubeAccess" ColumnName="LubeAccess" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__EFMigrationsHistory">
+            <EntityTypeMapping TypeName="FODLModel.C__EFMigrationsHistory">
+              <MappingFragment StoreEntitySet="__EFMigrationsHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileUploads">
+            <EntityTypeMapping TypeName="FODLModel.FileUploads">
+              <MappingFragment StoreEntitySet="FileUploads">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UploadBy" ColumnName="UploadBy" />
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

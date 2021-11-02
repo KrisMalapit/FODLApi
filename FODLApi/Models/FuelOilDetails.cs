@@ -28,6 +28,7 @@ namespace FODLApi.Models
         public string Status { get; set; }
         public string SMR { get; set; }
         public string Signature { get; set; }
+        public int OldId { get; set; }
     
         public virtual Equipments Equipments { get; set; }
         public virtual FuelOils FuelOils { get; set; }

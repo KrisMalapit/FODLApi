@@ -31,6 +31,8 @@
         <AssociationConnector Association="FODLModel.FK_FuelOils_LubeTrucks_LubeTruckId" ManuallyRouted="false" />
         <AssociationConnector Association="FODLModel.FK_FuelOilSubDetails_Items_ItemId" ManuallyRouted="false" />
         <AssociationConnector Association="FODLModel.FK_Users_Roles_RoleId" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FODLModel.C__EFMigrationsHistory" Width="1.5" PointX="10.375" PointY="11.75" />
+        <EntityTypeShape EntityType="FODLModel.FileUploads" Width="1.5" PointX="12.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

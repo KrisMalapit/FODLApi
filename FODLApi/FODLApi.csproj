@@ -67,12 +67,14 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -186,6 +188,9 @@
     <Compile Include="Models\Components.cs">
       <DependentUpon>FODLModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C__EFMigrationsHistory.cs">
+      <DependentUpon>FODLModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Departments.cs">
       <DependentUpon>FODLModel.tt</DependentUpon>
     </Compile>
@@ -193,6 +198,9 @@
       <DependentUpon>FODLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Equipments.cs">
+      <DependentUpon>FODLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FileUploads.cs">
       <DependentUpon>FODLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FODLModel.Context.cs">
@@ -240,12 +248,24 @@
     <Compile Include="Models\Users.cs">
       <DependentUpon>FODLModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\NavisionViewModel.cs" />
     <Compile Include="Models\ViewModel\ReportViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Reports\dsFODL.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dsFODL.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities.cs" />
+    <Compile Include="Web References\FODLWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -298,6 +318,12 @@
     <Content Include="Reports\dsFODL.xsc">
       <DependentUpon>dsFODL.xsd</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\Dev Minesite.pubxml" />
+    <None Include="Properties\PublishProfiles\Dev.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Reports\dsFODL.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -326,6 +352,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Web References\FODLWebService\FODL_Web_Service.wsdl" />
+    <None Include="Web References\FODLWebService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -364,6 +395,25 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Reports\rptLiquidation.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://thulium.smcdacon.com:7067/BC130_SMPC_TEST/WS/Semirara/Codeunit/FODL_Web_Service">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\FODLWebService\</RelPath>
+      <UpdateFromURL>http://thulium.smcdacon.com:7067/BC130_SMPC_TEST/WS/Semirara/Codeunit/FODL_Web_Service</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>FODLApi_FODLWebService_FODL_Web_Service</CachedSettingsPropName>
+    </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

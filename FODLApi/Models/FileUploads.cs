@@ -12,19 +12,12 @@ namespace FODLApi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class FuelOilSubDetails
+    public partial class FileUploads
     {
-        public int Id { get; set; }
-        public System.DateTime TimeInput { get; set; }
-        public int ItemId { get; set; }
-        public int ComponentId { get; set; }
-        public int VolumeQty { get; set; }
-        public int FuelOilDetailId { get; set; }
+        public int ID { get; set; }
+        public string FileName { get; set; }
+        public System.DateTime UploadDate { get; set; }
+        public string UploadBy { get; set; }
         public string Status { get; set; }
-        public int OldId { get; set; }
-    
-        public virtual Components Components { get; set; }
-        public virtual FuelOilDetails FuelOilDetails { get; set; }
-        public virtual Items Items { get; set; }
     }
 }

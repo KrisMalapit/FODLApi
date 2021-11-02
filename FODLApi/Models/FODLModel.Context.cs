@@ -40,5 +40,7 @@ namespace FODLApi.Models
         public virtual DbSet<NoSeries> NoSeries { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<C__EFMigrationsHistory> C__EFMigrationsHistory { get; set; }
+        public virtual DbSet<FileUploads> FileUploads { get; set; }
     }
 }

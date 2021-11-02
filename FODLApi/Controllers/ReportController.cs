@@ -10,6 +10,11 @@ using System.Web.Http;
 using TAMSApi.Models.ViewModel;
 using Microsoft.Reporting.WebForms;
 using System.Reflection;
+using FODLApi.FODLWebService;
+using FODLApi.Models.ViewModel;
+using System.Web.Http.Results;
+using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace FODLApi.Controllers
 {
@@ -128,23 +133,7 @@ namespace FODLApi.Controllers
 
 
 
-                //if (rptVM.fromDate != def)
-                //{
-                //    x = x.Where(a => a.CreatedDate >= rptVM.fromDate && a.CreatedDate <= rptVM.toDate);
-                //}
-
-                //if (rptVM.LevelId != null)
-                //{
-                //    x = x.Where(a => rptVM.LevelId.Contains(a.LevelId));
-                //}
-                //if (rptVM.EmployeeName != null)
-                //{
-                //    x = x.Where(a => rptVM.EmployeeName.Contains(a.EmployeeId));
-                //}
-                //if (rptVM.EmployeeType != 0)
-                //{
-                //    x = x.Where(a => a.TypeId == rptVM.EmployeeType);
-                //}
+               
                 int c = x.Count();
                 var lsts = x.ToList();
                 DataTable dts = new DataTable();
@@ -188,6 +177,125 @@ namespace FODLApi.Controllers
             }
             //put a breakpoint here and check datatable
             return dataTable;
+        }
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/uploadnav")]
+        public JsonResult<NavisionViewModel> UploadToNavision(string batchno)
+        {
+            string status = "";
+            string result = "";
+            int[] fuelid = _context.FuelOils.Where(a => a.Status == "Posted").Select(a => a.Id).ToArray();
+            try
+            {
+                var v =
+
+               _context.FuelOilSubDetails
+                  .Where(a => fuelid.Contains(a.FuelOilDetails.FuelOilId))
+                  .Where(a => a.Status == "Active")
+
+                  .Select(a => new
+                  {
+                      EntryType = "Negative Adjmt.",
+                      ItemNo = a.Items.No,
+                      PostingDate = a.FuelOilDetails.FuelOils.TransactionDate,
+                      DocumentDate = a.FuelOilDetails.FuelOils.CreatedDate,
+                      Qty = a.VolumeQty,
+                      EquipmentCode = a.FuelOilDetails.Equipments.No,
+                      a.FuelOilDetails.Locations.OfficeCode,
+                      FuelCode = a.Items.TypeFuel == "OIL-LUBE" ? a.FuelOilDetails.Equipments.FuelCodeOil : a.FuelOilDetails.Equipments.FuelCodeDiesel,
+                      LocationCode = "SMPC-SITE",
+                      a.FuelOilDetails.Equipments.DepartmentCode,
+                      a.Id,
+                      a.Status,
+                      a.FuelOilDetailId,
+                      FuelOilSubDetailsId = a.Id,
+                      DocumentNo = a.FuelOilDetails.FuelOils.ReferenceNo
+                  });
+
+            DataTable dt = new DataTable();
+            var lst = v.ToList();
+            dt = ToDataTable(lst);
+
+            //---for live
+            FODL_Web_Service ns = new FODL_Web_Service();
+            ns.Url = "http://thulium.smcdacon.com:7067/BC130_SMPC_TEST/WS/Semirara/Codeunit/FODL_Web_Service";
+            NetworkCredential netCred = new NetworkCredential(@"semiraramining\handshake", "M1ntch0c0l@t3");
+            //NetworkCredential netCred = new NetworkCredential(@"smcdacon\kcmalapit", "password060708!!!!!$");
+
+
+                Uri uri = new Uri(ns.Url);
+                ICredentials credentials = netCred.GetCredential(uri, "Basic");
+                ns.Credentials = credentials;
+                ns.PreAuthenticate = true;
+
+
+                int i = 0;
+                Boolean NoError = true;
+                //ns.BeginTrans();
+                (string.Format("============================== Transfer started  =============================" + DateTime.Now)).WriteLog();
+                foreach (DataRow dr in dt.Rows)
+                {
+                    i += 1;
+                    try
+                    {
+                        var res = ns.UploadToNavision(batchno, (i * 1000), dr["DocumentNo"].ToString(), dr["ItemNo"].ToString(), Convert.ToDateTime(dr["PostingDate"]), Convert.ToDateTime(dr["DocumentDate"]), Convert.ToInt32(dr["Qty"]), dr["EquipmentCode"].ToString(),
+                            dr["OfficeCode"].ToString(), dr["FuelCode"].ToString(), dr["LocationCode"].ToString(), dr["DepartmentCode"].ToString());
+
+                        //if (res == "Success")
+                        //{
+                        //    var subdetail = _context.FuelOilSubDetails.Find(Convert.ToInt32(dr["Id"]));
+                        //    subdetail.Status = "Transferred";
+                        //    _context.Entry(subdetail).State = EntityState.Modified;
+                        //    _context.SaveChanges();
+
+                        //}
+                    }
+                    catch (Exception ex)
+                    {
+                        result = "Unexpected error:" + ex.Message;
+                        NoError = false;
+                        string.Format("	Error/s: FuelSub Id: {0} Exception: {1} ", dr["FuelOilSubDetailsId"].ToString(), ex.Message.ToString()).WriteLog();
+
+                    }
+                }
+
+                if (NoError == false)
+                {
+                    (string.Format("===== Error/s found: All purchase line has been rolled back. No changes made ======" + DateTime.Now)).WriteLog();
+                }
+                else
+                {
+
+                    //var fo = _context.FuelOils.Where(a => a.Status == "Posted");
+                    //_context.Entry(fo).Property("FirstName").IsModified = true;
+                    //_context.SaveChanges();
+
+                    _context.FuelOils.Where(a => a.Status == "Posted").ToList()
+                        .ForEach(e => e.Status = "Transferred");
+
+                    _context.SaveChanges();
+                    result = "success";
+                }
+
+                (string.Format("============================== Transfer finished at =============================" + DateTime.Now)).WriteLog();
+
+
+            }
+            catch (Exception ex)
+            {
+                result = "Unexpected error in NAVISION API : " + ex.Message;
+                (string.Format(result)).WriteLog();
+            }
+
+            var model = new NavisionViewModel
+            {
+                batchno = batchno,
+                status = status,
+                message = result
+            };
+
+
+            return Json(model);
         }
 
     }
