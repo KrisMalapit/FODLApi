@@ -44,103 +44,107 @@ namespace FODLApi.Controllers
 
                 DateTime def = new DateTime(1, 1, 1);
 
+                if (report == "rptLiquidation")
+                {
+                    var v = _context.FuelOilDetails
+                                        .Where(a => a.Status == "Active")
+                                        .Where(a => a.FuelOilId == rptVM.ReferenceId)
+                                        .Select(a => new {
 
-                
 
-                var v = _context.FuelOilDetails
-                    .Where(a => a.Status == "Active")
-                    .Where(a=>a.FuelOilId == rptVM.ReferenceId)
-                    .Select(a => new {
-                   
-                 
-                    a.FuelOils.Shift
-                    ,
-                    a.FuelOils.CreatedDate
-                    ,
-                    a.FuelOils.ReferenceNo
-                    ,
-                    UnitNo = a.Equipments.Name
-                    ,
-                    Location = a.Locations.List
-                    //,
-                    //LubeTruck = a.FuelOils.LubeTrucks.No
-                    //,
-                    //Dispenser = a.FuelOils.Dispensers.No
-                    ,
-                    SourceNo = a.FuelOils.LubeTrucks.No == "na" ? a.FuelOils.Dispensers.No : a.FuelOils.LubeTrucks.No
-                    ,
-                    a.SMR
-                    ,
-                    Time = a.CreatedDate
-                    ,
-                    DieselFuel = 0
-                    ,a.Id
-                    ,a.Signature
+                                            a.FuelOils.Shift
+                                        ,
+                                            a.FuelOils.CreatedDate
+                                        ,
+                                            a.FuelOils.ReferenceNo
+                                        ,
+                                            UnitNo = a.Equipments.Name
+                                        ,
+                                            Location = a.Locations.List
+                                        //,
+                                        //LubeTruck = a.FuelOils.LubeTrucks.No
+                                        //,
+                                        //Dispenser = a.FuelOils.Dispensers.No
+                                        ,
+                                            SourceNo = a.FuelOils.LubeTrucks.No == "na" ? a.FuelOils.Dispensers.No : a.FuelOils.LubeTrucks.No
+                                        ,
+                                            a.SMR
+                                        ,
+                                            Time = a.CreatedDate
+                                        ,
+                                            DieselFuel = 0
+                                        ,
+                                            a.Id
+                                        ,
+                                            a.Signature
 
-                });
-                var lst = v.ToList();
-                var x = v.GroupJoin(
-                      _context.FuelOilSubDetails // B
-                      .Where(a => a.Status == "Active"),
-                      i => i.Id, //A key
-                      p => p.FuelOilDetailId,//B key
-                      (i, g) =>
-                         new
-                         {
-                             i, //holds A data
+                                        });
+                    var lst = v.ToList();
+                    var x = v.GroupJoin(
+                          _context.FuelOilSubDetails // B
+                          .Where(a => a.Status == "Active"),
+                          i => i.Id, //A key
+                          p => p.FuelOilDetailId,//B key
+                          (i, g) =>
+                             new
+                             {
+                                 i, //holds A data
                              g  //holds B data
                          }
-                   ).SelectMany(
-                      temp => temp.g.DefaultIfEmpty(), //gets data and transfer to B
-                      (A, B) =>
-                         new
-                         {
-                            
-                             A.i.ReferenceNo,
-                             A.i.SourceNo,
-                             EquipmentNo = A.i.UnitNo,
-                             A.i.Shift,
-                             A.i.Location,
-                             A.i.SMR,
-                             A.i.Time,
-                             A.i.DieselFuel,
-                             VolumeQty = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : B.VolumeQty,
-                             A.i.CreatedDate,
-                             Component = string.IsNullOrEmpty(B.Components.Name) ? "" : B.Components.Name,
-                             DescriptionLiquidation = string.IsNullOrEmpty(B.Items.DescriptionLiquidation) ? "" : B.Items.DescriptionLiquidation,
-                             EP2 = 0,
-                             Coolant = ""
-                             ,
-                             Signature = string.IsNullOrEmpty(A.i.Signature) ? "" : "Signed",
-                             E30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Engine" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
-                             E15W = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Engine" & B.Items.DescriptionLiquidation == "15W40" ? B.VolumeQty : 0),
-                             T30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Transmission" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
-                             TPTT = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Transmission" & B.Items.DescriptionLiquidation == "PTT30" ? B.VolumeQty : 0),
-                             T15W = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Transmission" & B.Items.DescriptionLiquidation == "15W40" ? B.VolumeQty : 0),
-                             H30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Hydraulics" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
-                             H15 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Hydraulics" & B.Items.DescriptionLiquidation == "15W40" ? B.VolumeQty : 0),
-                             H10 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Hydraulics" & B.Items.DescriptionLiquidation == "10" ? B.VolumeQty : 0),
-                             HPTT = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Hydraulics" & B.Items.DescriptionLiquidation == "PTT30" ? B.VolumeQty : 0),
-                             H68 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Hydraulics" & B.Items.DescriptionLiquidation == "68" ? B.VolumeQty : 0),
-                             F30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Final Drives" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
-                             FPTT = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Final Drives" & B.Items.DescriptionLiquidation == "PTT50" ? B.VolumeQty : 0),
-                             F140 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Final Drives" & B.Items.DescriptionLiquidation == "140" ? B.VolumeQty : 0),
-                             P30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "PTO/Damper" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
-                             P15 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "PTO/Damper" & B.Items.DescriptionLiquidation == "15W40" ? B.VolumeQty : 0),
+                       ).SelectMany(
+                          temp => temp.g.DefaultIfEmpty(), //gets data and transfer to B
+                          (A, B) =>
+                             new
+                             {
 
-                         }
-                   );
+                                 A.i.ReferenceNo,
+                                 A.i.SourceNo,
+                                 EquipmentNo = A.i.UnitNo,
+                                 A.i.Shift,
+                                 A.i.Location,
+                                 A.i.SMR,
+                                 A.i.Time,
+                                 A.i.DieselFuel,
+                                 VolumeQty = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : B.VolumeQty,
+                                 A.i.CreatedDate,
+                                 Component = string.IsNullOrEmpty(B.Components.Name) ? "" : B.Components.Name,
+                                 DescriptionLiquidation = string.IsNullOrEmpty(B.Items.DescriptionLiquidation) ? "" : B.Items.DescriptionLiquidation,
+                                 EP2 = 0,
+                                 Coolant = ""
+                                 ,
+                                 Signature = string.IsNullOrEmpty(A.i.Signature) ? "" : "Signed",
+                                 E30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Engine" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
+                                 E15W = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Engine" & B.Items.DescriptionLiquidation == "15W40" ? B.VolumeQty : 0),
+                                 T30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Transmission" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
+                                 TPTT = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Transmission" & B.Items.DescriptionLiquidation == "PTT30" ? B.VolumeQty : 0),
+                                 T15W = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Transmission" & B.Items.DescriptionLiquidation == "15W40" ? B.VolumeQty : 0),
+                                 H30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Hydraulics" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
+                                 H15 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Hydraulics" & B.Items.DescriptionLiquidation == "15W40" ? B.VolumeQty : 0),
+                                 H10 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Hydraulics" & B.Items.DescriptionLiquidation == "10" ? B.VolumeQty : 0),
+                                 HPTT = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Hydraulics" & B.Items.DescriptionLiquidation == "PTT30" ? B.VolumeQty : 0),
+                                 H68 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Hydraulics" & B.Items.DescriptionLiquidation == "68" ? B.VolumeQty : 0),
+                                 F30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Final Drives" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
+                                 FPTT = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Final Drives" & B.Items.DescriptionLiquidation == "PTT50" ? B.VolumeQty : 0),
+                                 F140 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Final Drives" & B.Items.DescriptionLiquidation == "140" ? B.VolumeQty : 0),
+                                 P30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "PTO/Damper" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
+                                 P15 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "PTO/Damper" & B.Items.DescriptionLiquidation == "15W40" ? B.VolumeQty : 0),
 
+                             }
+                       );
+                    var lsts = x.ToList();
+                    DataTable dts = new DataTable();
+                    dts = ToDataTable(lsts);
+                    ReportDataSource datasources = new ReportDataSource("Liquidation", dts);
+                    LocalReport.DataSources.Clear();
+                    LocalReport.DataSources.Add(datasources);
+                }
+                else
+                {
 
+                }
 
-               
-                int c = x.Count();
-                var lsts = x.ToList();
-                DataTable dts = new DataTable();
-                dts = ToDataTable(lsts);
-                ReportDataSource datasources = new ReportDataSource("Liquidation", dts);
-                LocalReport.DataSources.Clear();
-                LocalReport.DataSources.Add(datasources);
+                //int c = x.Count();
+
                 return LocalReport.Render(rptVM.rptType);
 
             }
@@ -180,13 +184,30 @@ namespace FODLApi.Controllers
         }
         [System.Web.Http.HttpGet]
         [System.Web.Http.Route("api/uploadnav")]
-        public JsonResult<NavisionViewModel> UploadToNavision(string batchno)
+        public JsonResult<NavisionViewModel> UploadToNavision(string batchno,string referenceno)
         {
             string status = "";
             string result = "";
-            int[] fuelid = _context.FuelOils.Where(a => a.Status == "Posted").Select(a => a.Id).ToArray();
+
+
+            //int[] fuelid = _context.FuelOils.Where(a => a.Status == "Posted").Select(a => a.Id).ToArray();
+            int[] fuelid;
+
             try
             {
+                if (string.IsNullOrEmpty(referenceno))
+                {
+
+                    fuelid = _context.FuelOils
+                        .Where(a => a.Status == "Posted")
+                        .Select(a => a.Id).ToArray();
+                }
+                else
+                {
+                    fuelid = referenceno.Split(',').Select(n => Convert.ToInt32(n)).ToArray();
+                }
+
+
                 var v =
 
                _context.FuelOilSubDetails
@@ -270,7 +291,10 @@ namespace FODLApi.Controllers
                     //_context.Entry(fo).Property("FirstName").IsModified = true;
                     //_context.SaveChanges();
 
-                    _context.FuelOils.Where(a => a.Status == "Posted").ToList()
+                    _context.FuelOils
+                         //.Where(a => a.Status == "Posted")
+                        .Where(a => fuelid.Contains(a.Id))
+                        .ToList()
                         .ForEach(e => e.Status = "Transferred");
 
                     _context.SaveChanges();

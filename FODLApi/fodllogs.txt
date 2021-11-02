@@ -125,3 +125,18 @@
 ============================== Transfer finished at =============================9/20/2021 5:02:20 PM 9/20/2021 5:02:20 PM
 ============================== Transfer started  =============================9/20/2021 5:11:08 PM 9/20/2021 5:11:08 PM
 ============================== Transfer finished at =============================9/20/2021 5:11:09 PM 9/20/2021 5:11:09 PM
+============================== Transfer started  =============================11/2/2021 3:07:56 PM 11/2/2021 3:07:56 PM
+	Error/s: FuelSub Id: 1008 Exception: The remote name could not be resolved: 'thulium.smcdacon.com'  11/2/2021 3:07:56 PM
+	Error/s: FuelSub Id: 1009 Exception: The remote name could not be resolved: 'thulium.smcdacon.com'  11/2/2021 3:07:57 PM
+===== Error/s found: All purchase line has been rolled back. No changes made ======11/2/2021 3:07:57 PM 11/2/2021 3:07:57 PM
+============================== Transfer finished at =============================11/2/2021 3:07:57 PM 11/2/2021 3:07:57 PM
+============================== Transfer started  =============================11/2/2021 3:08:22 PM 11/2/2021 3:08:22 PM
+	Error/s: FuelSub Id: 1008 Exception: The remote name could not be resolved: 'thulium.smcdacon.com'  11/2/2021 3:08:22 PM
+	Error/s: FuelSub Id: 1009 Exception: The remote name could not be resolved: 'thulium.smcdacon.com'  11/2/2021 3:08:22 PM
+	Error/s: FuelSub Id: 1010 Exception: The remote name could not be resolved: 'thulium.smcdacon.com'  11/2/2021 3:08:22 PM
+===== Error/s found: All purchase line has been rolled back. No changes made ======11/2/2021 3:08:22 PM 11/2/2021 3:08:22 PM
+============================== Transfer finished at =============================11/2/2021 3:08:22 PM 11/2/2021 3:08:22 PM
+============================== Transfer started  =============================11/2/2021 3:08:49 PM 11/2/2021 3:08:49 PM
+	Error/s: FuelSub Id: 1010 Exception: The remote name could not be resolved: 'thulium.smcdacon.com'  11/2/2021 3:08:49 PM
+===== Error/s found: All purchase line has been rolled back. No changes made ======11/2/2021 3:08:49 PM 11/2/2021 3:08:49 PM
+============================== Transfer finished at =============================11/2/2021 3:08:49 PM 11/2/2021 3:08:49 PM
