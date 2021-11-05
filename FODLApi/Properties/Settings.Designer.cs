@@ -33,5 +33,16 @@ namespace FODLApi.Properties {
                 return ((string)(this["FODLApi_FODLWebService_FODL_Web_Service"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://aprodite.semiraramining.net:7057/BC130_SMPC_TEST/WS/Semirara/Codeunit/FODL" +
+            "_Web_Service")]
+        public string FODLApi_FODLWebServiceMinesite_FODL_Web_Service {
+            get {
+                return ((string)(this["FODLApi_FODLWebServiceMinesite_FODL_Web_Service"]));
+            }
+        }
     }
 }

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="DownloadDepartment">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="DownloadDepartment_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UploadToNavision">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="batchNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="lineNo" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="postingDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="documentDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="qtyRequest" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="equipmentNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="officeCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="fuelCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="locationCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="deptCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UploadToNavision_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <message name="DownloadDepartment">
+    <part name="parameters" element="tns:DownloadDepartment" />
+  </message>
+  <message name="DownloadDepartment_Result">
+    <part name="parameters" element="tns:DownloadDepartment_Result" />
+  </message>
+  <message name="UploadToNavision">
+    <part name="parameters" element="tns:UploadToNavision" />
+  </message>
+  <message name="UploadToNavision_Result">
+    <part name="parameters" element="tns:UploadToNavision_Result" />
+  </message>
+  <portType name="FODL_Web_Service_Port">
+    <operation name="DownloadDepartment">
+      <input name="DownloadDepartment" message="tns:DownloadDepartment" />
+      <output name="DownloadDepartment_Result" message="tns:DownloadDepartment_Result" />
+    </operation>
+    <operation name="UploadToNavision">
+      <input name="UploadToNavision" message="tns:UploadToNavision" />
+      <output name="UploadToNavision_Result" message="tns:UploadToNavision_Result" />
+    </operation>
+  </portType>
+  <binding name="FODL_Web_Service_Binding" type="tns:FODL_Web_Service_Port">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="DownloadDepartment">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service:DownloadDepartment" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="DownloadDepartment">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="DownloadDepartment_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UploadToNavision">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service:UploadToNavision" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UploadToNavision">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UploadToNavision_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="FODL_Web_Service">
+    <port name="FODL_Web_Service_Port" binding="tns:FODL_Web_Service_Binding">
+      <address location="http://aprodite.semiraramining.net:7057/BC130_SMPC_TEST/WS/Semirara/Codeunit/FODL_Web_Service" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>

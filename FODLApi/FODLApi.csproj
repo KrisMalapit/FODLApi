@@ -262,6 +262,11 @@
       <DependentUpon>dsFODL.xsd</DependentUpon>
     </Compile>
     <Compile Include="Utilities.cs" />
+    <Compile Include="Web References\FODLWebServiceMinesite\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\FODLWebService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -352,6 +357,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Web References\FODLWebServiceMinesite\FODL_Web_Service.wsdl" />
+    <Content Include="Web References\FODLWebServiceMinesite\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
     <None Include="Web References\FODLWebService\FODL_Web_Service.wsdl" />
     <None Include="Web References\FODLWebService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -403,6 +413,17 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
+    <WebReferenceUrl Include="http://aprodite.semiraramining.net:7057/BC130_SMPC_TEST/WS/Semirara/Codeunit/FODL_Web_Service">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\FODLWebServiceMinesite\</RelPath>
+      <UpdateFromURL>http://aprodite.semiraramining.net:7057/BC130_SMPC_TEST/WS/Semirara/Codeunit/FODL_Web_Service</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>FODLApi_FODLWebServiceMinesite_FODL_Web_Service</CachedSettingsPropName>
+    </WebReferenceUrl>
     <WebReferenceUrl Include="http://thulium.smcdacon.com:7067/BC130_SMPC_TEST/WS/Semirara/Codeunit/FODL_Web_Service">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\FODLWebService\</RelPath>

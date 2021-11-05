@@ -5,5 +5,8 @@
     <Setting Name="FODLApi_FODLWebService_FODL_Web_Service" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://thulium.smcdacon.com:7067/BC130_SMPC_TEST/WS/Semirara/Codeunit/FODL_Web_Service</Value>
     </Setting>
+    <Setting Name="FODLApi_FODLWebServiceMinesite_FODL_Web_Service" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://aprodite.semiraramining.net:7057/BC130_SMPC_TEST/WS/Semirara/Codeunit/FODL_Web_Service</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
