@@ -12,7 +12,7 @@
   <xs:element name="dsFODL" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsFODL" msprop:Generator_UserDSName="dsFODL">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Liquidation" msprop:Generator_TableClassName="LiquidationDataTable" msprop:Generator_TableVarName="tableLiquidation" msprop:Generator_RowChangedName="LiquidationRowChanged" msprop:Generator_TablePropName="Liquidation" msprop:Generator_RowDeletingName="LiquidationRowDeleting" msprop:Generator_RowChangingName="LiquidationRowChanging" msprop:Generator_RowEvHandlerName="LiquidationRowChangeEventHandler" msprop:Generator_RowDeletedName="LiquidationRowDeleted" msprop:Generator_RowClassName="LiquidationRow" msprop:Generator_UserTableName="Liquidation" msprop:Generator_RowEvArgName="LiquidationRowChangeEvent">
+        <xs:element name="Liquidation" msprop:Generator_TableClassName="LiquidationDataTable" msprop:Generator_TableVarName="tableLiquidation" msprop:Generator_TablePropName="Liquidation" msprop:Generator_RowDeletingName="LiquidationRowDeleting" msprop:Generator_RowChangingName="LiquidationRowChanging" msprop:Generator_RowEvHandlerName="LiquidationRowChangeEventHandler" msprop:Generator_RowDeletedName="LiquidationRowDeleted" msprop:Generator_UserTableName="Liquidation" msprop:Generator_RowChangedName="LiquidationRowChanged" msprop:Generator_RowEvArgName="LiquidationRowChangeEvent" msprop:Generator_RowClassName="LiquidationRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="EquipmentNo" msprop:Generator_ColumnVarNameInTable="columnEquipmentNo" msprop:Generator_ColumnPropNameInRow="EquipmentNo" msprop:Generator_ColumnPropNameInTable="EquipmentNoColumn" msprop:Generator_UserColumnName="EquipmentNo" type="xs:string" minOccurs="0" />
@@ -45,6 +45,7 @@
               <xs:element name="SourceNo" msprop:Generator_ColumnVarNameInTable="columnSourceNo" msprop:Generator_ColumnPropNameInRow="SourceNo" msprop:Generator_ColumnPropNameInTable="SourceNoColumn" msprop:Generator_UserColumnName="SourceNo" type="xs:string" minOccurs="0" />
               <xs:element name="CreatedDate" msprop:Generator_ColumnVarNameInTable="columnCreatedDate" msprop:Generator_ColumnPropNameInRow="CreatedDate" msprop:Generator_ColumnPropNameInTable="CreatedDateColumn" msprop:Generator_UserColumnName="CreatedDate" type="xs:string" minOccurs="0" />
               <xs:element name="Shift" msprop:Generator_ColumnVarNameInTable="columnShift" msprop:Generator_ColumnPropNameInRow="Shift" msprop:Generator_ColumnPropNameInTable="ShiftColumn" msprop:Generator_UserColumnName="Shift" type="xs:string" minOccurs="0" />
+              <xs:element name="CreatedBy" msprop:Generator_ColumnVarNameInTable="columnCreatedBy" msprop:Generator_ColumnPropNameInRow="CreatedBy" msprop:Generator_ColumnPropNameInTable="CreatedByColumn" msprop:Generator_UserColumnName="CreatedBy" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

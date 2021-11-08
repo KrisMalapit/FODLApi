@@ -339,6 +339,8 @@ namespace FODLApi.Reports {
             
             private global::System.Data.DataColumn columnShift;
             
+            private global::System.Data.DataColumn columnCreatedBy;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public LiquidationDataTable() {
@@ -614,6 +616,14 @@ namespace FODLApi.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CreatedByColumn {
+                get {
+                    return this.columnCreatedBy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -679,7 +689,8 @@ namespace FODLApi.Reports {
                         string VolumeQty, 
                         string SourceNo, 
                         string CreatedDate, 
-                        string Shift) {
+                        string Shift, 
+                        string CreatedBy) {
                 LiquidationRow rowLiquidationRow = ((LiquidationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         EquipmentNo,
@@ -711,7 +722,8 @@ namespace FODLApi.Reports {
                         VolumeQty,
                         SourceNo,
                         CreatedDate,
-                        Shift};
+                        Shift,
+                        CreatedBy};
                 rowLiquidationRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowLiquidationRow);
                 return rowLiquidationRow;
@@ -764,6 +776,7 @@ namespace FODLApi.Reports {
                 this.columnSourceNo = base.Columns["SourceNo"];
                 this.columnCreatedDate = base.Columns["CreatedDate"];
                 this.columnShift = base.Columns["Shift"];
+                this.columnCreatedBy = base.Columns["CreatedBy"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -829,6 +842,8 @@ namespace FODLApi.Reports {
                 base.Columns.Add(this.columnCreatedDate);
                 this.columnShift = new global::System.Data.DataColumn("Shift", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnShift);
+                this.columnCreatedBy = new global::System.Data.DataColumn("CreatedBy", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCreatedBy);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1451,6 +1466,22 @@ namespace FODLApi.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CreatedBy {
+                get {
+                    try {
+                        return ((string)(this[this.tableLiquidation.CreatedByColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CreatedBy\' in table \'Liquidation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLiquidation.CreatedByColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsEquipmentNoNull() {
                 return this.IsNull(this.tableLiquidation.EquipmentNoColumn);
             }
@@ -1807,6 +1838,18 @@ namespace FODLApi.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetShiftNull() {
                 this[this.tableLiquidation.ShiftColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCreatedByNull() {
+                return this.IsNull(this.tableLiquidation.CreatedByColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCreatedByNull() {
+                this[this.tableLiquidation.CreatedByColumn] = global::System.Convert.DBNull;
             }
         }
         

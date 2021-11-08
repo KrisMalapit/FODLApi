@@ -58,7 +58,7 @@ namespace FODLApi.Controllers
                                         ,
                                             a.FuelOils.ReferenceNo
                                         ,
-                                            UnitNo = a.Equipments.Name
+                                            UnitNo = a.Equipments.No
                                         ,
                                             Location = a.Locations.List
                                         //,
@@ -66,18 +66,18 @@ namespace FODLApi.Controllers
                                         //,
                                         //Dispenser = a.FuelOils.Dispensers.No
                                         ,
-                                            SourceNo = a.FuelOils.LubeTrucks.No == "na" ? a.FuelOils.Dispensers.No : a.FuelOils.LubeTrucks.No
+                                            SourceNo = a.FuelOils.LubeTrucks.No == "na" ? a.FuelOils.Dispensers.Name : a.FuelOils.LubeTrucks.No
                                         ,
                                             a.SMR
                                         ,
                                             Time = a.CreatedDate
-                                        ,
-                                            DieselFuel = 0
+                                        //,
+                                        //    DieselFuel = 0
                                         ,
                                             a.Id
                                         ,
                                             a.Signature
-
+                                            ,a.FuelOils.CreatedBy
                                         });
                     var lst = v.ToList();
                     var x = v.GroupJoin(
@@ -104,7 +104,7 @@ namespace FODLApi.Controllers
                                  A.i.Location,
                                  A.i.SMR,
                                  A.i.Time,
-                                 A.i.DieselFuel,
+                                 //A.i.DieselFuel,
                                  VolumeQty = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : B.VolumeQty,
                                  A.i.CreatedDate,
                                  Component = string.IsNullOrEmpty(B.Components.Name) ? "" : B.Components.Name,
@@ -113,6 +113,7 @@ namespace FODLApi.Controllers
                                  Coolant = ""
                                  ,
                                  Signature = string.IsNullOrEmpty(A.i.Signature) ? "" : "Signed",
+                                 DieselFuel = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Items.No == "FO000001" ? B.VolumeQty : 0),
                                  E30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Engine" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
                                  E15W = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Engine" & B.Items.DescriptionLiquidation == "15W40" ? B.VolumeQty : 0),
                                  T30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Transmission" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
@@ -128,7 +129,7 @@ namespace FODLApi.Controllers
                                  F140 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Final Drives" & B.Items.DescriptionLiquidation == "140" ? B.VolumeQty : 0),
                                  P30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "PTO/Damper" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
                                  P15 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "PTO/Damper" & B.Items.DescriptionLiquidation == "15W40" ? B.VolumeQty : 0),
-
+                                 A.i.CreatedBy
                              }
                        );
                     var lsts = x.ToList();
@@ -239,11 +240,12 @@ namespace FODLApi.Controllers
 
             //---for dev
             
-            //FODL_Web_Service ns = new FODL_Web_Service(); //for thulium
-            FODLWebServiceMinesite.FODL_Web_Service ns = new FODLWebServiceMinesite.FODL_Web_Service(); // for aprodite
+            FODL_Web_Service ns = new FODL_Web_Service(); //for thulium
+                                                          //FODLWebServiceMinesite.FODL_Web_Service ns = new FODLWebServiceMinesite.FODL_Web_Service(); // for aprodite
 
-            ns.Url = "http://aprodite.semiraramining.net:7057/BC130_SMPC_TEST/WS/Semirara/Codeunit/FODL_Web_Service";
-            NetworkCredential netCred = new NetworkCredential(@"semiraramining\handshake", "M1ntch0c0l@t3");
+                //ns.Url = "http://aprodite.semiraramining.net:7057/BC130_SMPC_TEST/WS/Semirara/Codeunit/FODL_Web_Service";
+            ns.Url = "http://thulium.smcdacon.com:7067/BC130_SMPC_TEST/WS/Semirara/Codeunit/FODL_Web_Service";
+                NetworkCredential netCred = new NetworkCredential(@"semiraramining\handshake", "M1ntch0c0l@t3");
             //NetworkCredential netCred = new NetworkCredential(@"smcdacon\kcmalapit", "password060708!!!!!$");
 
 
@@ -263,7 +265,7 @@ namespace FODLApi.Controllers
                     try
                     {
 
-                        string.Format("	Batch: {0} DocumentNo: {1} Item {2}", batchno, dr["DocumentNo"].ToString() , dr["ItemNo"].ToString()).WriteLog();
+                        string.Format("	Batch: {0} DocumentNo: {1} - Item {2} - Fuel {3} - Equipment {4}", batchno, dr["DocumentNo"].ToString() , dr["ItemNo"].ToString(), dr["EquipmentCode"].ToString(), dr["FuelCode"].ToString()).WriteLog();
 
 
                         var res = ns.UploadToNavision(batchno, (i * 1000), dr["DocumentNo"].ToString(), dr["ItemNo"].ToString(), Convert.ToDateTime(dr["PostingDate"]), Convert.ToDateTime(dr["DocumentDate"]), Convert.ToInt32(dr["Qty"]), dr["EquipmentCode"].ToString(),
