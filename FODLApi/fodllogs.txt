@@ -1,9 +1,27 @@
-============================== Transfer started  =============================11/8/2021 5:51:18 PM 11/8/2021 5:51:18 PM
-	Batch: DD DocumentNo: FLCR00012 - Item FO000001 - Fuel 1C-COA-01 - Equipment  11/8/2021 5:51:18 PM
-	Error/s: FuelSub Id: 1008 Exception: The remote name could not be resolved: 'aprodite.semiraramining.net'  11/8/2021 5:51:32 PM
-	Batch: DD DocumentNo: FLCR00012 - Item FO000002 - Fuel 1C-COA-01 - Equipment  11/8/2021 5:51:32 PM
-	Error/s: FuelSub Id: 1009 Exception: The remote name could not be resolved: 'aprodite.semiraramining.net'  11/8/2021 5:51:33 PM
-	Batch: DD DocumentNo: FLCR00013 - Item FO000003 - Fuel EQ-0000005 - Equipment 200 11/8/2021 5:51:33 PM
-	Error/s: FuelSub Id: 1010 Exception: The remote name could not be resolved: 'aprodite.semiraramining.net'  11/8/2021 5:51:33 PM
-===== Error/s found: All purchase line has been rolled back. No changes made ======11/8/2021 5:51:33 PM 11/8/2021 5:51:33 PM
-============================== Transfer finished at =============================11/8/2021 5:51:33 PM 11/8/2021 5:51:33 PM
+============================== Transfer started  =============================11/9/2021 1:56:28 PM 11/9/2021 1:56:28 PM
+	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000001 - Fuel EEQ-01 - Equipment 100 11/9/2021 1:56:28 PM
+	Error/s: FuelSub Id: 23 Exception: EEQ-01 is not an available Code for that dimension.  11/9/2021 1:56:30 PM
+	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000004 - Fuel EEQ-01 - Equipment 102 11/9/2021 1:56:30 PM
+	Error/s: FuelSub Id: 24 Exception: EEQ-01 is not an available Code for that dimension.  11/9/2021 1:56:30 PM
+===== Error/s found: All journal line has been rolled back. No changes made ======11/9/2021 1:56:30 PM 11/9/2021 1:56:30 PM
+============================== Transfer finished at =============================11/9/2021 1:56:30 PM 11/9/2021 1:56:30 PM
+============================== Transfer started  =============================11/9/2021 2:02:12 PM 11/9/2021 2:02:12 PM
+	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000001 - Fuel FL-02 - Equipment  11/9/2021 2:02:12 PM
+	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000004 - Fuel FL-02 - Equipment  11/9/2021 2:02:12 PM
+============================== Transfer finished at =============================11/9/2021 2:02:13 PM 11/9/2021 2:02:13 PM
+============================== Transfer started  =============================11/9/2021 4:45:03 PM 11/9/2021 4:45:03 PM
+	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000001 - Fuel FL-02 - Equipment 111 11/9/2021 4:45:03 PM
+	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000004 - Fuel FL-02 - Equipment 500 11/9/2021 4:45:04 PM
+============================== Transfer finished at =============================11/9/2021 4:45:05 PM 11/9/2021 4:45:05 PM
+============================== Transfer started  =============================11/9/2021 6:16:01 PM 11/9/2021 6:16:01 PM
+	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000001 - Fuel FL-02 - Equipment 111 11/9/2021 6:16:01 PM
+	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000004 - Fuel FL-02 - Equipment 500 11/9/2021 6:16:02 PM
+============================== Transfer finished at =============================11/9/2021 6:16:02 PM 11/9/2021 6:16:02 PM
+============================== Transfer started  =============================11/9/2021 6:40:42 PM 11/9/2021 6:40:42 PM
+	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000001 - Fuel FL-02 - Equipment 111 11/9/2021 6:40:42 PM
+	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000004 - Fuel FL-02 - Equipment 500 11/9/2021 6:40:43 PM
+============================== Transfer finished at =============================11/9/2021 6:40:43 PM 11/9/2021 6:40:43 PM
+============================== Transfer started  =============================11/9/2021 6:52:03 PM 11/9/2021 6:52:03 PM
+	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000001 - Fuel FL-02 - Equipment 111 11/9/2021 6:52:03 PM
+	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000004 - Fuel FL-02 - Equipment 500 11/9/2021 6:52:04 PM
+============================== Transfer finished at =============================11/9/2021 6:52:08 PM 11/9/2021 6:52:08 PM

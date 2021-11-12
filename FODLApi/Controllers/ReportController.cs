@@ -240,13 +240,13 @@ namespace FODLApi.Controllers
 
             //---for dev
             
-            FODL_Web_Service ns = new FODL_Web_Service(); //for thulium
-                                                          //FODLWebServiceMinesite.FODL_Web_Service ns = new FODLWebServiceMinesite.FODL_Web_Service(); // for aprodite
+            //FODL_Web_Service ns = new FODL_Web_Service(); //for thulium
+            FODLWebServiceMinesite.FODL_Web_Service ns = new FODLWebServiceMinesite.FODL_Web_Service(); // for aprodite
 
-                //ns.Url = "http://aprodite.semiraramining.net:7057/BC130_SMPC_TEST/WS/Semirara/Codeunit/FODL_Web_Service";
-            ns.Url = "http://thulium.smcdacon.com:7067/BC130_SMPC_TEST/WS/Semirara/Codeunit/FODL_Web_Service";
+                ns.Url = "http://aprodite.semiraramining.net:7057/BC130_SMPC_TEST/WS/Semirara/Codeunit/FODL_Web_Service";
+            //ns.Url = "http://thulium.smcdacon.com:7067/BC130_SMPC_TEST/WS/Semirara/Codeunit/FODL_Web_Service";
                 NetworkCredential netCred = new NetworkCredential(@"semiraramining\handshake", "M1ntch0c0l@t3");
-            //NetworkCredential netCred = new NetworkCredential(@"smcdacon\kcmalapit", "password060708!!!!!$");
+           
 
 
                 Uri uri = new Uri(ns.Url);
@@ -255,9 +255,9 @@ namespace FODLApi.Controllers
                 ns.PreAuthenticate = true;
 
 
-                int i = 0;
+                int i = 3;
                 Boolean NoError = true;
-                //ns.BeginTrans();
+            
                 (string.Format("============================== Transfer started  =============================" + DateTime.Now)).WriteLog();
                 foreach (DataRow dr in dt.Rows)
                 {
@@ -268,7 +268,7 @@ namespace FODLApi.Controllers
                         string.Format("	Batch: {0} DocumentNo: {1} - Item {2} - Fuel {3} - Equipment {4}", batchno, dr["DocumentNo"].ToString() , dr["ItemNo"].ToString(), dr["EquipmentCode"].ToString(), dr["FuelCode"].ToString()).WriteLog();
 
 
-                        var res = ns.UploadToNavision(batchno, (i * 1000), dr["DocumentNo"].ToString(), dr["ItemNo"].ToString(), Convert.ToDateTime(dr["PostingDate"]), Convert.ToDateTime(dr["DocumentDate"]), Convert.ToInt32(dr["Qty"]), dr["EquipmentCode"].ToString(),
+                        var res = ns.UploadToNavision(batchno, (i * 1000), dr["ItemNo"].ToString(), Convert.ToDateTime(dr["PostingDate"]), Convert.ToDateTime(dr["DocumentDate"]), Convert.ToInt32(dr["Qty"]), dr["EquipmentCode"].ToString(),
                             dr["OfficeCode"].ToString(), dr["FuelCode"].ToString(), dr["LocationCode"].ToString(), dr["DepartmentCode"].ToString());
 
                         if (res == "Success")
@@ -283,7 +283,7 @@ namespace FODLApi.Controllers
                     }
                     catch (Exception ex)
                     {
-                        result = "Unexpected error:" + ex.Message;
+                        result = "Unexpected error: " + ex.Message;
                         NoError = false;
                         string.Format("	Error/s: FuelSub Id: {0} Exception: {1} ", dr["FuelOilSubDetailsId"].ToString(), ex.Message.ToString()).WriteLog();
                         string.Format("Result : " + "Fail");
@@ -293,7 +293,7 @@ namespace FODLApi.Controllers
 
                 if (NoError == false)
                 {
-                    (string.Format("===== Error/s found: All purchase line has been rolled back. No changes made ======" + DateTime.Now)).WriteLog();
+                    (string.Format("===== Error/s found: All journal line has been rolled back. No changes made ======" + DateTime.Now)).WriteLog();
                 }
                 else
                 {
@@ -303,7 +303,7 @@ namespace FODLApi.Controllers
                     //_context.SaveChanges();
 
                     _context.FuelOils
-                         //.Where(a => a.Status == "Posted")
+                        //.Where(a => a.Status == "Posted")
                         .Where(a => fuelid.Contains(a.Id))
                         .ToList()
                         .ForEach(e => e.Status = "Transferred");

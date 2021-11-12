@@ -19,7 +19,6 @@
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="batchNo" type="string" />
             <element minOccurs="1" maxOccurs="1" name="lineNo" type="int" />
-            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
             <element minOccurs="1" maxOccurs="1" name="itemNo" type="string" />
             <element minOccurs="1" maxOccurs="1" name="postingDate" type="date" />
             <element minOccurs="1" maxOccurs="1" name="documentDate" type="date" />
@@ -33,6 +32,35 @@
         </complexType>
       </element>
       <element name="UploadToNavision_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ValidateShortcutDimCode">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="fieldNumber" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="shortcutDimCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ValidateShortcutDimCode_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="shortcutDimCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AssignNo">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="vNoSeries" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AssignNo_Result">
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
@@ -53,6 +81,18 @@
   <message name="UploadToNavision_Result">
     <part name="parameters" element="tns:UploadToNavision_Result" />
   </message>
+  <message name="ValidateShortcutDimCode">
+    <part name="parameters" element="tns:ValidateShortcutDimCode" />
+  </message>
+  <message name="ValidateShortcutDimCode_Result">
+    <part name="parameters" element="tns:ValidateShortcutDimCode_Result" />
+  </message>
+  <message name="AssignNo">
+    <part name="parameters" element="tns:AssignNo" />
+  </message>
+  <message name="AssignNo_Result">
+    <part name="parameters" element="tns:AssignNo_Result" />
+  </message>
   <portType name="FODL_Web_Service_Port">
     <operation name="DownloadDepartment">
       <input name="DownloadDepartment" message="tns:DownloadDepartment" />
@@ -61,6 +101,14 @@
     <operation name="UploadToNavision">
       <input name="UploadToNavision" message="tns:UploadToNavision" />
       <output name="UploadToNavision_Result" message="tns:UploadToNavision_Result" />
+    </operation>
+    <operation name="ValidateShortcutDimCode">
+      <input name="ValidateShortcutDimCode" message="tns:ValidateShortcutDimCode" />
+      <output name="ValidateShortcutDimCode_Result" message="tns:ValidateShortcutDimCode_Result" />
+    </operation>
+    <operation name="AssignNo">
+      <input name="AssignNo" message="tns:AssignNo" />
+      <output name="AssignNo_Result" message="tns:AssignNo_Result" />
     </operation>
   </portType>
   <binding name="FODL_Web_Service_Binding" type="tns:FODL_Web_Service_Port">
@@ -80,6 +128,24 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="UploadToNavision_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ValidateShortcutDimCode">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service:ValidateShortcutDimCode" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ValidateShortcutDimCode">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ValidateShortcutDimCode_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="AssignNo">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service:AssignNo" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="AssignNo">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="AssignNo_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

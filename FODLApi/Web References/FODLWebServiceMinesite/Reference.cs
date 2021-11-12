@@ -33,6 +33,10 @@ namespace FODLApi.FODLWebServiceMinesite {
         
         private System.Threading.SendOrPostCallback UploadToNavisionOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ValidateShortcutDimCodeOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AssignNoOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -78,6 +82,12 @@ namespace FODLApi.FODLWebServiceMinesite {
         public event UploadToNavisionCompletedEventHandler UploadToNavisionCompleted;
         
         /// <remarks/>
+        public event ValidateShortcutDimCodeCompletedEventHandler ValidateShortcutDimCodeCompleted;
+        
+        /// <remarks/>
+        public event AssignNoCompletedEventHandler AssignNoCompleted;
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service:DownloadDepartment", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service", ResponseElementName="DownloadDepartment_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
         public string DownloadDepartment() {
@@ -108,11 +118,10 @@ namespace FODLApi.FODLWebServiceMinesite {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service:UploadToNavision", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service", ResponseElementName="UploadToNavision_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string UploadToNavision(string batchNo, int lineNo, string documentNo, string itemNo, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime postingDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime documentDate, int qtyRequest, string equipmentNo, string officeCode, string fuelCode, string locationCode, string deptCode) {
+        public string UploadToNavision(string batchNo, int lineNo, string itemNo, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime postingDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime documentDate, int qtyRequest, string equipmentNo, string officeCode, string fuelCode, string locationCode, string deptCode) {
             object[] results = this.Invoke("UploadToNavision", new object[] {
                         batchNo,
                         lineNo,
-                        documentNo,
                         itemNo,
                         postingDate,
                         documentDate,
@@ -126,19 +135,18 @@ namespace FODLApi.FODLWebServiceMinesite {
         }
         
         /// <remarks/>
-        public void UploadToNavisionAsync(string batchNo, int lineNo, string documentNo, string itemNo, System.DateTime postingDate, System.DateTime documentDate, int qtyRequest, string equipmentNo, string officeCode, string fuelCode, string locationCode, string deptCode) {
-            this.UploadToNavisionAsync(batchNo, lineNo, documentNo, itemNo, postingDate, documentDate, qtyRequest, equipmentNo, officeCode, fuelCode, locationCode, deptCode, null);
+        public void UploadToNavisionAsync(string batchNo, int lineNo, string itemNo, System.DateTime postingDate, System.DateTime documentDate, int qtyRequest, string equipmentNo, string officeCode, string fuelCode, string locationCode, string deptCode) {
+            this.UploadToNavisionAsync(batchNo, lineNo, itemNo, postingDate, documentDate, qtyRequest, equipmentNo, officeCode, fuelCode, locationCode, deptCode, null);
         }
         
         /// <remarks/>
-        public void UploadToNavisionAsync(string batchNo, int lineNo, string documentNo, string itemNo, System.DateTime postingDate, System.DateTime documentDate, int qtyRequest, string equipmentNo, string officeCode, string fuelCode, string locationCode, string deptCode, object userState) {
+        public void UploadToNavisionAsync(string batchNo, int lineNo, string itemNo, System.DateTime postingDate, System.DateTime documentDate, int qtyRequest, string equipmentNo, string officeCode, string fuelCode, string locationCode, string deptCode, object userState) {
             if ((this.UploadToNavisionOperationCompleted == null)) {
                 this.UploadToNavisionOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUploadToNavisionOperationCompleted);
             }
             this.InvokeAsync("UploadToNavision", new object[] {
                         batchNo,
                         lineNo,
-                        documentNo,
                         itemNo,
                         postingDate,
                         documentDate,
@@ -154,6 +162,67 @@ namespace FODLApi.FODLWebServiceMinesite {
             if ((this.UploadToNavisionCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UploadToNavisionCompleted(this, new UploadToNavisionCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service:ValidateShortcutDimCode", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service", ResponseElementName="ValidateShortcutDimCode_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void ValidateShortcutDimCode(int fieldNumber, ref string shortcutDimCode) {
+            object[] results = this.Invoke("ValidateShortcutDimCode", new object[] {
+                        fieldNumber,
+                        shortcutDimCode});
+            shortcutDimCode = ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ValidateShortcutDimCodeAsync(int fieldNumber, string shortcutDimCode) {
+            this.ValidateShortcutDimCodeAsync(fieldNumber, shortcutDimCode, null);
+        }
+        
+        /// <remarks/>
+        public void ValidateShortcutDimCodeAsync(int fieldNumber, string shortcutDimCode, object userState) {
+            if ((this.ValidateShortcutDimCodeOperationCompleted == null)) {
+                this.ValidateShortcutDimCodeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnValidateShortcutDimCodeOperationCompleted);
+            }
+            this.InvokeAsync("ValidateShortcutDimCode", new object[] {
+                        fieldNumber,
+                        shortcutDimCode}, this.ValidateShortcutDimCodeOperationCompleted, userState);
+        }
+        
+        private void OnValidateShortcutDimCodeOperationCompleted(object arg) {
+            if ((this.ValidateShortcutDimCodeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ValidateShortcutDimCodeCompleted(this, new ValidateShortcutDimCodeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service:AssignNo", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service", ResponseElementName="AssignNo_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string AssignNo(string vNoSeries) {
+            object[] results = this.Invoke("AssignNo", new object[] {
+                        vNoSeries});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AssignNoAsync(string vNoSeries) {
+            this.AssignNoAsync(vNoSeries, null);
+        }
+        
+        /// <remarks/>
+        public void AssignNoAsync(string vNoSeries, object userState) {
+            if ((this.AssignNoOperationCompleted == null)) {
+                this.AssignNoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAssignNoOperationCompleted);
+            }
+            this.InvokeAsync("AssignNo", new object[] {
+                        vNoSeries}, this.AssignNoOperationCompleted, userState);
+        }
+        
+        private void OnAssignNoOperationCompleted(object arg) {
+            if ((this.AssignNoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AssignNoCompleted(this, new AssignNoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -215,6 +284,58 @@ namespace FODLApi.FODLWebServiceMinesite {
         private object[] results;
         
         internal UploadToNavisionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void ValidateShortcutDimCodeCompletedEventHandler(object sender, ValidateShortcutDimCodeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ValidateShortcutDimCodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ValidateShortcutDimCodeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string shortcutDimCode {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void AssignNoCompletedEventHandler(object sender, AssignNoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AssignNoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AssignNoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

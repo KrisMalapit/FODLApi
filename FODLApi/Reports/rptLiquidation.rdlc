@@ -1263,7 +1263,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!DescriptionLiquidation.Value</Value>
+                              <Value>=Fields!Location.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -1285,6 +1285,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -3664,7 +3665,6 @@
         </TablixRowHierarchy>
         <DataSetName>Liquidation</DataSetName>
         <Top>0.01389in</Top>
-        <Left>0in</Left>
         <Height>1.25in</Height>
         <Width>13.29579in</Width>
         <Style>
@@ -3776,7 +3776,6 @@
           </Paragraphs>
           <rd:DefaultName>Textbox23</rd:DefaultName>
           <Top>0.02778in</Top>
-          <Left>0in</Left>
           <Height>0.25in</Height>
           <Width>0.55208in</Width>
           <ZIndex>2</ZIndex>
@@ -3806,7 +3805,6 @@
           </Paragraphs>
           <rd:DefaultName>Textbox23</rd:DefaultName>
           <Top>0.27778in</Top>
-          <Left>0in</Left>
           <Height>0.25in</Height>
           <Width>0.55208in</Width>
           <ZIndex>3</ZIndex>
@@ -4000,7 +3998,6 @@
           </Paragraphs>
           <rd:DefaultName>Textbox9</rd:DefaultName>
           <Top>0.0125in</Top>
-          <Left>0in</Left>
           <Height>0.25in</Height>
           <Width>2.74084in</Width>
           <Style>
@@ -4060,7 +4057,6 @@
           </Paragraphs>
           <rd:DefaultName>Textbox9</rd:DefaultName>
           <Top>0.75527in</Top>
-          <Left>0in</Left>
           <Height>0.25in</Height>
           <Width>2.74084in</Width>
           <ZIndex>2</ZIndex>

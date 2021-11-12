@@ -358,10 +358,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <None Include="Web References\FODLWebServiceMinesite\FODL_Web_Service.wsdl" />
-    <Content Include="Web References\FODLWebServiceMinesite\Reference.map">
+    <None Include="Web References\FODLWebServiceMinesite\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web References\FODLWebService\FODL_Web_Service.wsdl" />
     <None Include="Web References\FODLWebService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
