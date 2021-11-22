@@ -351,6 +351,10 @@ namespace FODLApi.Reports {
             
             private global::System.Data.DataColumn columnP220;
             
+            private global::System.Data.DataColumn columnFromDate;
+            
+            private global::System.Data.DataColumn columnToDate;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public LiquidationDataTable() {
@@ -674,6 +678,22 @@ namespace FODLApi.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FromDateColumn {
+                get {
+                    return this.columnFromDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ToDateColumn {
+                get {
+                    return this.columnToDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -745,7 +765,9 @@ namespace FODLApi.Reports {
                         string F220, 
                         string F90, 
                         string P150, 
-                        string P220) {
+                        string P220, 
+                        string FromDate, 
+                        string ToDate) {
                 LiquidationRow rowLiquidationRow = ((LiquidationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         EquipmentNo,
@@ -783,7 +805,9 @@ namespace FODLApi.Reports {
                         F220,
                         F90,
                         P150,
-                        P220};
+                        P220,
+                        FromDate,
+                        ToDate};
                 rowLiquidationRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowLiquidationRow);
                 return rowLiquidationRow;
@@ -842,6 +866,8 @@ namespace FODLApi.Reports {
                 this.columnF90 = base.Columns["F90"];
                 this.columnP150 = base.Columns["P150"];
                 this.columnP220 = base.Columns["P220"];
+                this.columnFromDate = base.Columns["FromDate"];
+                this.columnToDate = base.Columns["ToDate"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -919,6 +945,10 @@ namespace FODLApi.Reports {
                 base.Columns.Add(this.columnP150);
                 this.columnP220 = new global::System.Data.DataColumn("P220", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnP220);
+                this.columnFromDate = new global::System.Data.DataColumn("FromDate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFromDate);
+                this.columnToDate = new global::System.Data.DataColumn("ToDate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnToDate);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1637,6 +1667,38 @@ namespace FODLApi.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string FromDate {
+                get {
+                    try {
+                        return ((string)(this[this.tableLiquidation.FromDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FromDate\' in table \'Liquidation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLiquidation.FromDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string ToDate {
+                get {
+                    try {
+                        return ((string)(this[this.tableLiquidation.ToDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ToDate\' in table \'Liquidation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLiquidation.ToDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsEquipmentNoNull() {
                 return this.IsNull(this.tableLiquidation.EquipmentNoColumn);
             }
@@ -2065,6 +2127,30 @@ namespace FODLApi.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetP220Null() {
                 this[this.tableLiquidation.P220Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFromDateNull() {
+                return this.IsNull(this.tableLiquidation.FromDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFromDateNull() {
+                this[this.tableLiquidation.FromDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsToDateNull() {
+                return this.IsNull(this.tableLiquidation.ToDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetToDateNull() {
+                this[this.tableLiquidation.ToDateColumn] = global::System.Convert.DBNull;
             }
         }
         
