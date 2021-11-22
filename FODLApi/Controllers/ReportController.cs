@@ -41,6 +41,9 @@ namespace FODLApi.Controllers
                     ReportPath = baseDir + "\\Reports\\" + report + ".rdlc"
                 };
 
+                string status = "Active,Posted,Transferred";
+                string[] stat = status.Split(',').Select(n => n).ToArray(); 
+
 
                 DateTime def = new DateTime(1, 1, 1);
 
@@ -80,16 +83,17 @@ namespace FODLApi.Controllers
                                             ,a.FuelOils.CreatedBy
                                         });
                     var lst = v.ToList();
+
                     var x = v.GroupJoin(
                           _context.FuelOilSubDetails // B
-                          .Where(a => a.Status == "Active"),
+                          .Where(a => stat.Contains(a.Status)),
                           i => i.Id, //A key
                           p => p.FuelOilDetailId,//B key
                           (i, g) =>
                              new
                              {
                                  i, //holds A data
-                             g  //holds B data
+                             g 
                          }
                        ).SelectMany(
                           temp => temp.g.DefaultIfEmpty(), //gets data and transfer to B
@@ -109,27 +113,45 @@ namespace FODLApi.Controllers
                                  A.i.CreatedDate,
                                  Component = string.IsNullOrEmpty(B.Components.Name) ? "" : B.Components.Name,
                                  DescriptionLiquidation = string.IsNullOrEmpty(B.Items.DescriptionLiquidation) ? "" : B.Items.DescriptionLiquidation,
-                                 EP2 = 0,
-                                 Coolant = ""
-                                 ,
+
+                                 EP2 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Items.No == "FO000287" ? B.VolumeQty : 0),
+                                 Coolant = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Items.No == "FO000106" ? B.VolumeQty : 0),
+
                                  Signature = string.IsNullOrEmpty(A.i.Signature) ? "" : "Signed",
                                  DieselFuel = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Items.No == "FO000001" ? B.VolumeQty : 0),
                                  E30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Engine" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
                                  E15W = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Engine" & B.Items.DescriptionLiquidation == "15W40" ? B.VolumeQty : 0),
                                  T30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Transmission" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
-                                 TPTT = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Transmission" & B.Items.DescriptionLiquidation == "PTT30" ? B.VolumeQty : 0),
+                                 //TPTT = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Transmission" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
                                  T15W = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Transmission" & B.Items.DescriptionLiquidation == "15W40" ? B.VolumeQty : 0),
-                                 H30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Hydraulics" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
-                                 H15 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Hydraulics" & B.Items.DescriptionLiquidation == "15W40" ? B.VolumeQty : 0),
-                                 H10 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Hydraulics" & B.Items.DescriptionLiquidation == "10" ? B.VolumeQty : 0),
-                                 HPTT = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Hydraulics" & B.Items.DescriptionLiquidation == "PTT30" ? B.VolumeQty : 0),
-                                 H68 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Hydraulics" & B.Items.DescriptionLiquidation == "68" ? B.VolumeQty : 0),
-                                 F30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Final Drives" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
-                                 FPTT = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Final Drives" & B.Items.DescriptionLiquidation == "PTT50" ? B.VolumeQty : 0),
-                                 F140 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Final Drives" & B.Items.DescriptionLiquidation == "140" ? B.VolumeQty : 0),
+
+                                 T90 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Transmission" & B.Items.DescriptionLiquidation == "90" ? B.VolumeQty : 0),
+
+                                 H30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Hydraulic" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
+                                 H15 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Hydraulic" & B.Items.DescriptionLiquidation == "15W40" ? B.VolumeQty : 0),
+                                 H10 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Hydraulic" & B.Items.DescriptionLiquidation == "10" ? B.VolumeQty : 0),
+                                 HPTT = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Hydraulic" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
+                                 H68 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Hydraulic" & B.Items.DescriptionLiquidation == "68" ? B.VolumeQty : 0),
+
+                                 F30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Final Drive" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
+                                 F220 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Final Drive" & B.Items.DescriptionLiquidation == "220" ? B.VolumeQty : 0),
+                                 F90 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Final Drive" & B.Items.DescriptionLiquidation == "90" ? B.VolumeQty : 0),
+
+
+                                 FPTT = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Final Drive" & B.Items.DescriptionLiquidation == "PTT50" ? B.VolumeQty : 0),
+                                 F140 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Final Drive" & B.Items.DescriptionLiquidation == "140" ? B.VolumeQty : 0),
                                  P30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "PTO/Damper" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
+
+                                 P150 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "PTO/Damper" & B.Items.DescriptionLiquidation == "150" ? B.VolumeQty : 0),
+                                 P220 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "PTO/Damper" & B.Items.DescriptionLiquidation == "220" ? B.VolumeQty : 0),
+
+
+
+
                                  P15 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "PTO/Damper" & B.Items.DescriptionLiquidation == "15W40" ? B.VolumeQty : 0),
                                  A.i.CreatedBy
+                                 
+                                 
                              }
                        );
                     var lsts = x.ToList();
@@ -214,7 +236,7 @@ namespace FODLApi.Controllers
                _context.FuelOilSubDetails
                   .Where(a => fuelid.Contains(a.FuelOilDetails.FuelOilId))
                   .Where(a => a.Status == "Active")
-
+                  .Where(a => a.FuelOilDetails.Status == "Active")
                   .Select(a => new
                   {
                       EntryType = "Negative Adjmt.",
@@ -238,15 +260,17 @@ namespace FODLApi.Controllers
             var lst = v.ToList();
             dt = ToDataTable(lst);
 
-            //---for dev
-            
-            //FODL_Web_Service ns = new FODL_Web_Service(); //for thulium
-            FODLWebServiceMinesite.FODL_Web_Service ns = new FODLWebServiceMinesite.FODL_Web_Service(); // for aprodite
+                ////for
+                //FODL_Web_Service ns = new FODL_Web_Service(); //for thulium
+                //ns.Url = "http://thulium.smcdacon.com:7067/BC130_SMPC_TEST/WS/Semirara/Codeunit/FODL_Web_Service";
 
+
+                //for aprodite
+                FODLWebServiceMinesite.FODL_Web_Service ns = new FODLWebServiceMinesite.FODL_Web_Service();
                 ns.Url = "http://aprodite.semiraramining.net:7057/BC130_SMPC_TEST/WS/Semirara/Codeunit/FODL_Web_Service";
-            //ns.Url = "http://thulium.smcdacon.com:7067/BC130_SMPC_TEST/WS/Semirara/Codeunit/FODL_Web_Service";
+
                 NetworkCredential netCred = new NetworkCredential(@"semiraramining\handshake", "M1ntch0c0l@t3");
-           
+
 
 
                 Uri uri = new Uri(ns.Url);
@@ -255,32 +279,38 @@ namespace FODLApi.Controllers
                 ns.PreAuthenticate = true;
 
 
-                int i = 3;
+                int i = 0;
+                int ctr = 1; 
                 Boolean NoError = true;
             
                 (string.Format("============================== Transfer started  =============================" + DateTime.Now)).WriteLog();
+                var docno = ns.GetDocumentNo(batchno);
+                
                 foreach (DataRow dr in dt.Rows)
                 {
                     i += 1;
                     try
                     {
 
-                        string.Format("	Batch: {0} DocumentNo: {1} - Item {2} - Fuel {3} - Equipment {4}", batchno, dr["DocumentNo"].ToString() , dr["ItemNo"].ToString(), dr["EquipmentCode"].ToString(), dr["FuelCode"].ToString()).WriteLog();
+                        string.Format("	Batch: {0} DocumentNo: {1} - Item {2} - Fuel {3} - Equipment {4}", batchno, dr["DocumentNo"].ToString() , dr["ItemNo"].ToString(), dr["FuelCode"].ToString(), dr["EquipmentCode"].ToString()).WriteLog();
+                       
 
+                        var res = ns.UploadToNavision(batchno, (i * 10000), dr["ItemNo"].ToString(), Convert.ToDateTime(dr["PostingDate"]), Convert.ToDateTime(dr["DocumentDate"]), Convert.ToInt32(dr["Qty"]), dr["EquipmentCode"].ToString(),
+                            dr["OfficeCode"].ToString(), dr["FuelCode"].ToString(), dr["LocationCode"].ToString(), dr["DepartmentCode"].ToString(), docno);
 
-                        var res = ns.UploadToNavision(batchno, (i * 1000), dr["ItemNo"].ToString(), Convert.ToDateTime(dr["PostingDate"]), Convert.ToDateTime(dr["DocumentDate"]), Convert.ToInt32(dr["Qty"]), dr["EquipmentCode"].ToString(),
-                            dr["OfficeCode"].ToString(), dr["FuelCode"].ToString(), dr["LocationCode"].ToString(), dr["DepartmentCode"].ToString());
+                        //if (res == "Success")
+                        //{
+                        //    var subdetail = _context.FuelOilSubDetails.Find(Convert.ToInt32(dr["Id"]));
+                        //    subdetail.Status = "Transferred";
+                        //    _context.Entry(subdetail).State = EntityState.Modified;
+                        //    _context.SaveChanges();
 
-                        if (res == "Success")
-                        {
-                            var subdetail = _context.FuelOilSubDetails.Find(Convert.ToInt32(dr["Id"]));
-                            subdetail.Status = "Transferred";
-                            _context.Entry(subdetail).State = EntityState.Modified;
-                            _context.SaveChanges();
-
-                        }
+                        //}
                         string.Format("Result : " + res);
+                        ctr++;
                     }
+                    
+
                     catch (Exception ex)
                     {
                         result = "Unexpected error: " + ex.Message;
@@ -297,7 +327,8 @@ namespace FODLApi.Controllers
                 }
                 else
                 {
-
+                    var batch = ns.NewBatchName(batchno);
+                    string.Format("NewBatch : " + batch).WriteLog(); 
                     //var fo = _context.FuelOils.Where(a => a.Status == "Posted");
                     //_context.Entry(fo).Property("FirstName").IsModified = true;
                     //_context.SaveChanges();

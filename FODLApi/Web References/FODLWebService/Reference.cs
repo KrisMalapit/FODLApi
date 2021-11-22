@@ -37,6 +37,10 @@ namespace FODLApi.FODLWebService {
         
         private System.Threading.SendOrPostCallback AssignNoOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetDocumentNoOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback NewBatchNameOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -88,6 +92,12 @@ namespace FODLApi.FODLWebService {
         public event AssignNoCompletedEventHandler AssignNoCompleted;
         
         /// <remarks/>
+        public event GetDocumentNoCompletedEventHandler GetDocumentNoCompleted;
+        
+        /// <remarks/>
+        public event NewBatchNameCompletedEventHandler NewBatchNameCompleted;
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service:DownloadDepartment", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service", ResponseElementName="DownloadDepartment_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
         public string DownloadDepartment() {
@@ -118,7 +128,7 @@ namespace FODLApi.FODLWebService {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service:UploadToNavision", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service", ResponseElementName="UploadToNavision_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string UploadToNavision(string batchNo, int lineNo, string itemNo, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime postingDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime documentDate, int qtyRequest, string equipmentNo, string officeCode, string fuelCode, string locationCode, string deptCode) {
+        public string UploadToNavision(string batchNo, int lineNo, string itemNo, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime postingDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime documentDate, int qtyRequest, string equipmentNo, string officeCode, string fuelCode, string locationCode, string deptCode, string documentNo) {
             object[] results = this.Invoke("UploadToNavision", new object[] {
                         batchNo,
                         lineNo,
@@ -130,17 +140,18 @@ namespace FODLApi.FODLWebService {
                         officeCode,
                         fuelCode,
                         locationCode,
-                        deptCode});
+                        deptCode,
+                        documentNo});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void UploadToNavisionAsync(string batchNo, int lineNo, string itemNo, System.DateTime postingDate, System.DateTime documentDate, int qtyRequest, string equipmentNo, string officeCode, string fuelCode, string locationCode, string deptCode) {
-            this.UploadToNavisionAsync(batchNo, lineNo, itemNo, postingDate, documentDate, qtyRequest, equipmentNo, officeCode, fuelCode, locationCode, deptCode, null);
+        public void UploadToNavisionAsync(string batchNo, int lineNo, string itemNo, System.DateTime postingDate, System.DateTime documentDate, int qtyRequest, string equipmentNo, string officeCode, string fuelCode, string locationCode, string deptCode, string documentNo) {
+            this.UploadToNavisionAsync(batchNo, lineNo, itemNo, postingDate, documentDate, qtyRequest, equipmentNo, officeCode, fuelCode, locationCode, deptCode, documentNo, null);
         }
         
         /// <remarks/>
-        public void UploadToNavisionAsync(string batchNo, int lineNo, string itemNo, System.DateTime postingDate, System.DateTime documentDate, int qtyRequest, string equipmentNo, string officeCode, string fuelCode, string locationCode, string deptCode, object userState) {
+        public void UploadToNavisionAsync(string batchNo, int lineNo, string itemNo, System.DateTime postingDate, System.DateTime documentDate, int qtyRequest, string equipmentNo, string officeCode, string fuelCode, string locationCode, string deptCode, string documentNo, object userState) {
             if ((this.UploadToNavisionOperationCompleted == null)) {
                 this.UploadToNavisionOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUploadToNavisionOperationCompleted);
             }
@@ -155,7 +166,8 @@ namespace FODLApi.FODLWebService {
                         officeCode,
                         fuelCode,
                         locationCode,
-                        deptCode}, this.UploadToNavisionOperationCompleted, userState);
+                        deptCode,
+                        documentNo}, this.UploadToNavisionOperationCompleted, userState);
         }
         
         private void OnUploadToNavisionOperationCompleted(object arg) {
@@ -223,6 +235,66 @@ namespace FODLApi.FODLWebService {
             if ((this.AssignNoCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.AssignNoCompleted(this, new AssignNoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service:GetDocumentNo", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service", ResponseElementName="GetDocumentNo_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GetDocumentNo(string batchNo) {
+            object[] results = this.Invoke("GetDocumentNo", new object[] {
+                        batchNo});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetDocumentNoAsync(string batchNo) {
+            this.GetDocumentNoAsync(batchNo, null);
+        }
+        
+        /// <remarks/>
+        public void GetDocumentNoAsync(string batchNo, object userState) {
+            if ((this.GetDocumentNoOperationCompleted == null)) {
+                this.GetDocumentNoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetDocumentNoOperationCompleted);
+            }
+            this.InvokeAsync("GetDocumentNo", new object[] {
+                        batchNo}, this.GetDocumentNoOperationCompleted, userState);
+        }
+        
+        private void OnGetDocumentNoOperationCompleted(object arg) {
+            if ((this.GetDocumentNoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetDocumentNoCompleted(this, new GetDocumentNoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service:NewBatchName", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service", ResponseElementName="NewBatchName_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string NewBatchName(string batchNo) {
+            object[] results = this.Invoke("NewBatchName", new object[] {
+                        batchNo});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void NewBatchNameAsync(string batchNo) {
+            this.NewBatchNameAsync(batchNo, null);
+        }
+        
+        /// <remarks/>
+        public void NewBatchNameAsync(string batchNo, object userState) {
+            if ((this.NewBatchNameOperationCompleted == null)) {
+                this.NewBatchNameOperationCompleted = new System.Threading.SendOrPostCallback(this.OnNewBatchNameOperationCompleted);
+            }
+            this.InvokeAsync("NewBatchName", new object[] {
+                        batchNo}, this.NewBatchNameOperationCompleted, userState);
+        }
+        
+        private void OnNewBatchNameOperationCompleted(object arg) {
+            if ((this.NewBatchNameCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.NewBatchNameCompleted(this, new NewBatchNameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -336,6 +408,58 @@ namespace FODLApi.FODLWebService {
         private object[] results;
         
         internal AssignNoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void GetDocumentNoCompletedEventHandler(object sender, GetDocumentNoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetDocumentNoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetDocumentNoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void NewBatchNameCompletedEventHandler(object sender, NewBatchNameCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class NewBatchNameCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal NewBatchNameCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

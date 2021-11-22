@@ -341,6 +341,16 @@ namespace FODLApi.Reports {
             
             private global::System.Data.DataColumn columnCreatedBy;
             
+            private global::System.Data.DataColumn columnT90;
+            
+            private global::System.Data.DataColumn columnF220;
+            
+            private global::System.Data.DataColumn columnF90;
+            
+            private global::System.Data.DataColumn columnP150;
+            
+            private global::System.Data.DataColumn columnP220;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public LiquidationDataTable() {
@@ -624,6 +634,46 @@ namespace FODLApi.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn T90Column {
+                get {
+                    return this.columnT90;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn F220Column {
+                get {
+                    return this.columnF220;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn F90Column {
+                get {
+                    return this.columnF90;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn P150Column {
+                get {
+                    return this.columnP150;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn P220Column {
+                get {
+                    return this.columnP220;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -690,7 +740,12 @@ namespace FODLApi.Reports {
                         string SourceNo, 
                         string CreatedDate, 
                         string Shift, 
-                        string CreatedBy) {
+                        string CreatedBy, 
+                        string T90, 
+                        string F220, 
+                        string F90, 
+                        string P150, 
+                        string P220) {
                 LiquidationRow rowLiquidationRow = ((LiquidationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         EquipmentNo,
@@ -723,7 +778,12 @@ namespace FODLApi.Reports {
                         SourceNo,
                         CreatedDate,
                         Shift,
-                        CreatedBy};
+                        CreatedBy,
+                        T90,
+                        F220,
+                        F90,
+                        P150,
+                        P220};
                 rowLiquidationRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowLiquidationRow);
                 return rowLiquidationRow;
@@ -777,6 +837,11 @@ namespace FODLApi.Reports {
                 this.columnCreatedDate = base.Columns["CreatedDate"];
                 this.columnShift = base.Columns["Shift"];
                 this.columnCreatedBy = base.Columns["CreatedBy"];
+                this.columnT90 = base.Columns["T90"];
+                this.columnF220 = base.Columns["F220"];
+                this.columnF90 = base.Columns["F90"];
+                this.columnP150 = base.Columns["P150"];
+                this.columnP220 = base.Columns["P220"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -844,6 +909,16 @@ namespace FODLApi.Reports {
                 base.Columns.Add(this.columnShift);
                 this.columnCreatedBy = new global::System.Data.DataColumn("CreatedBy", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreatedBy);
+                this.columnT90 = new global::System.Data.DataColumn("T90", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnT90);
+                this.columnF220 = new global::System.Data.DataColumn("F220", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnF220);
+                this.columnF90 = new global::System.Data.DataColumn("F90", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnF90);
+                this.columnP150 = new global::System.Data.DataColumn("P150", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnP150);
+                this.columnP220 = new global::System.Data.DataColumn("P220", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnP220);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1482,6 +1557,86 @@ namespace FODLApi.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string T90 {
+                get {
+                    try {
+                        return ((string)(this[this.tableLiquidation.T90Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'T90\' in table \'Liquidation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLiquidation.T90Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string F220 {
+                get {
+                    try {
+                        return ((string)(this[this.tableLiquidation.F220Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'F220\' in table \'Liquidation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLiquidation.F220Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string F90 {
+                get {
+                    try {
+                        return ((string)(this[this.tableLiquidation.F90Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'F90\' in table \'Liquidation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLiquidation.F90Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string P150 {
+                get {
+                    try {
+                        return ((string)(this[this.tableLiquidation.P150Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'P150\' in table \'Liquidation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLiquidation.P150Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string P220 {
+                get {
+                    try {
+                        return ((string)(this[this.tableLiquidation.P220Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'P220\' in table \'Liquidation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLiquidation.P220Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsEquipmentNoNull() {
                 return this.IsNull(this.tableLiquidation.EquipmentNoColumn);
             }
@@ -1850,6 +2005,66 @@ namespace FODLApi.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetCreatedByNull() {
                 this[this.tableLiquidation.CreatedByColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsT90Null() {
+                return this.IsNull(this.tableLiquidation.T90Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetT90Null() {
+                this[this.tableLiquidation.T90Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsF220Null() {
+                return this.IsNull(this.tableLiquidation.F220Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetF220Null() {
+                this[this.tableLiquidation.F220Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsF90Null() {
+                return this.IsNull(this.tableLiquidation.F90Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetF90Null() {
+                this[this.tableLiquidation.F90Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsP150Null() {
+                return this.IsNull(this.tableLiquidation.P150Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetP150Null() {
+                this[this.tableLiquidation.P150Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsP220Null() {
+                return this.IsNull(this.tableLiquidation.P220Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetP220Null() {
+                this[this.tableLiquidation.P220Column] = global::System.Convert.DBNull;
             }
         }
         

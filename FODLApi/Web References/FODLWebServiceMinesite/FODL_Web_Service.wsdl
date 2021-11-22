@@ -28,6 +28,7 @@
             <element minOccurs="1" maxOccurs="1" name="fuelCode" type="string" />
             <element minOccurs="1" maxOccurs="1" name="locationCode" type="string" />
             <element minOccurs="1" maxOccurs="1" name="deptCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
           </sequence>
         </complexType>
       </element>
@@ -67,6 +68,34 @@
           </sequence>
         </complexType>
       </element>
+      <element name="GetDocumentNo">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="batchNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetDocumentNo_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="NewBatchName">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="batchNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="NewBatchName_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
     </schema>
   </types>
   <message name="DownloadDepartment">
@@ -93,6 +122,18 @@
   <message name="AssignNo_Result">
     <part name="parameters" element="tns:AssignNo_Result" />
   </message>
+  <message name="GetDocumentNo">
+    <part name="parameters" element="tns:GetDocumentNo" />
+  </message>
+  <message name="GetDocumentNo_Result">
+    <part name="parameters" element="tns:GetDocumentNo_Result" />
+  </message>
+  <message name="NewBatchName">
+    <part name="parameters" element="tns:NewBatchName" />
+  </message>
+  <message name="NewBatchName_Result">
+    <part name="parameters" element="tns:NewBatchName_Result" />
+  </message>
   <portType name="FODL_Web_Service_Port">
     <operation name="DownloadDepartment">
       <input name="DownloadDepartment" message="tns:DownloadDepartment" />
@@ -109,6 +150,14 @@
     <operation name="AssignNo">
       <input name="AssignNo" message="tns:AssignNo" />
       <output name="AssignNo_Result" message="tns:AssignNo_Result" />
+    </operation>
+    <operation name="GetDocumentNo">
+      <input name="GetDocumentNo" message="tns:GetDocumentNo" />
+      <output name="GetDocumentNo_Result" message="tns:GetDocumentNo_Result" />
+    </operation>
+    <operation name="NewBatchName">
+      <input name="NewBatchName" message="tns:NewBatchName" />
+      <output name="NewBatchName_Result" message="tns:NewBatchName_Result" />
     </operation>
   </portType>
   <binding name="FODL_Web_Service_Binding" type="tns:FODL_Web_Service_Port">
@@ -146,6 +195,24 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="AssignNo_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetDocumentNo">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service:GetDocumentNo" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetDocumentNo">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetDocumentNo_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="NewBatchName">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/FODL_Web_Service:NewBatchName" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="NewBatchName">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="NewBatchName_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

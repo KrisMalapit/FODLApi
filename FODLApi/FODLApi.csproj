@@ -435,6 +435,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Reports\rptLiquidation.rdlc" />
+    <EmbeddedResource Include="Reports\rptLiquidationSummary.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

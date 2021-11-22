@@ -1,27 +1,12 @@
-============================== Transfer started  =============================11/9/2021 1:56:28 PM 11/9/2021 1:56:28 PM
-	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000001 - Fuel EEQ-01 - Equipment 100 11/9/2021 1:56:28 PM
-	Error/s: FuelSub Id: 23 Exception: EEQ-01 is not an available Code for that dimension.  11/9/2021 1:56:30 PM
-	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000004 - Fuel EEQ-01 - Equipment 102 11/9/2021 1:56:30 PM
-	Error/s: FuelSub Id: 24 Exception: EEQ-01 is not an available Code for that dimension.  11/9/2021 1:56:30 PM
-===== Error/s found: All journal line has been rolled back. No changes made ======11/9/2021 1:56:30 PM 11/9/2021 1:56:30 PM
-============================== Transfer finished at =============================11/9/2021 1:56:30 PM 11/9/2021 1:56:30 PM
-============================== Transfer started  =============================11/9/2021 2:02:12 PM 11/9/2021 2:02:12 PM
-	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000001 - Fuel FL-02 - Equipment  11/9/2021 2:02:12 PM
-	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000004 - Fuel FL-02 - Equipment  11/9/2021 2:02:12 PM
-============================== Transfer finished at =============================11/9/2021 2:02:13 PM 11/9/2021 2:02:13 PM
-============================== Transfer started  =============================11/9/2021 4:45:03 PM 11/9/2021 4:45:03 PM
-	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000001 - Fuel FL-02 - Equipment 111 11/9/2021 4:45:03 PM
-	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000004 - Fuel FL-02 - Equipment 500 11/9/2021 4:45:04 PM
-============================== Transfer finished at =============================11/9/2021 4:45:05 PM 11/9/2021 4:45:05 PM
-============================== Transfer started  =============================11/9/2021 6:16:01 PM 11/9/2021 6:16:01 PM
-	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000001 - Fuel FL-02 - Equipment 111 11/9/2021 6:16:01 PM
-	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000004 - Fuel FL-02 - Equipment 500 11/9/2021 6:16:02 PM
-============================== Transfer finished at =============================11/9/2021 6:16:02 PM 11/9/2021 6:16:02 PM
-============================== Transfer started  =============================11/9/2021 6:40:42 PM 11/9/2021 6:40:42 PM
-	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000001 - Fuel FL-02 - Equipment 111 11/9/2021 6:40:42 PM
-	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000004 - Fuel FL-02 - Equipment 500 11/9/2021 6:40:43 PM
-============================== Transfer finished at =============================11/9/2021 6:40:43 PM 11/9/2021 6:40:43 PM
-============================== Transfer started  =============================11/9/2021 6:52:03 PM 11/9/2021 6:52:03 PM
-	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000001 - Fuel FL-02 - Equipment 111 11/9/2021 6:52:03 PM
-	Batch: JFQI00469 DocumentNo: FLCR00002 - Item FO000004 - Fuel FL-02 - Equipment 500 11/9/2021 6:52:04 PM
-============================== Transfer finished at =============================11/9/2021 6:52:08 PM 11/9/2021 6:52:08 PM
+============================== Transfer started  =============================11/19/2021 5:14:37 PM 11/19/2021 5:14:37 PM
+	Batch: DEVI00026 DocumentNo: FLCR00029 - Item FO000001 - Fuel 107 - Equipment MG-27 11/19/2021 5:14:38 PM
+============================== Transfer finished at =============================11/19/2021 5:14:40 PM 11/19/2021 5:14:40 PM
+============================== Transfer started  =============================11/19/2021 5:18:10 PM 11/19/2021 5:18:10 PM
+	Batch: DEVI00027 DocumentNo: FLCR00029 - Item FO000001 - Fuel 107 - Equipment MG-27 11/19/2021 5:18:13 PM
+============================== Transfer finished at =============================11/19/2021 5:18:15 PM 11/19/2021 5:18:15 PM
+============================== Transfer started  =============================11/19/2021 5:25:17 PM 11/19/2021 5:25:17 PM
+	Batch: DEVI00028 DocumentNo: FLCR00029 - Item FO000001 - Fuel 107 - Equipment MG-27 11/19/2021 5:25:17 PM
+============================== Transfer finished at =============================11/19/2021 5:25:19 PM 11/19/2021 5:25:19 PM
+============================== Transfer started  =============================11/19/2021 5:40:31 PM 11/19/2021 5:40:31 PM
+	Batch: DEVI00029 DocumentNo: FLCR00029 - Item FO000001 - Fuel 107 - Equipment MG-27 11/19/2021 5:40:32 PM
+============================== Transfer finished at =============================11/19/2021 5:40:34 PM 11/19/2021 5:40:34 PM
