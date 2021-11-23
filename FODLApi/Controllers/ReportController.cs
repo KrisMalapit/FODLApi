@@ -47,7 +47,9 @@ namespace FODLApi.Controllers
 
                 DateTime def = new DateTime(1, 1, 1);
                 var model = _context.FuelOilDetails
-                        .Where(a => a.Status == "Active");
+                        .Where(a => a.Status == "Active" )
+                        .Where(a => stat.Contains(a.FuelOils.Status))
+                        .Where(a => a.FuelOils.TransactionDate >= rptVM.fromDate && a.FuelOils.TransactionDate <= rptVM.toDate); 
 
                 if (report == "rptLiquidation")
                 {
@@ -55,10 +57,18 @@ namespace FODLApi.Controllers
                 }
                 else
                 {
-                  model =  model
+                    if (rptVM.lube == 1 && rptVM.disp == 1)
+                    {
+                        
+                    }
+                    else
+                    {
+                        model = model
                         .Where(a => a.FuelOils.LubeTruckId == rptVM.lube)
-                     .Where(a => a.FuelOils.DispenserId == rptVM.disp)
-                     .Where(a => a.FuelOils.TransactionDate >= rptVM.fromDate && a.FuelOils.TransactionDate <= rptVM.toDate);
+                        .Where(a => a.FuelOils.DispenserId == rptVM.disp);
+                        
+                    }
+                 
                 }
 
             
@@ -84,7 +94,10 @@ namespace FODLApi.Controllers
                         ,
                             a.Signature
                         ,a.FuelOils.CreatedBy
-                     
+                       ,
+                          LubeTruck = a.FuelOils.LubeTrucks.Description
+                       ,
+                          Dispenser = a.FuelOils.Dispensers.Name
                         });
 
                     var lst = v.ToList();
@@ -143,8 +156,9 @@ namespace FODLApi.Controllers
                                  A.i.CreatedBy,
                                  FromDate = rptVM.fromDate,
                                  ToDate = rptVM.toDate
-                                 
-                                 
+                                 ,A.i.LubeTruck,
+                                 A.i.Dispenser
+
                              }
                        );
                     var lsts = x.ToList();

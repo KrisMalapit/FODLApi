@@ -12,7 +12,7 @@
   <xs:element name="dsFODL" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsFODL" msprop:Generator_UserDSName="dsFODL">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Liquidation" msprop:Generator_TableClassName="LiquidationDataTable" msprop:Generator_TableVarName="tableLiquidation" msprop:Generator_TablePropName="Liquidation" msprop:Generator_RowDeletingName="LiquidationRowDeleting" msprop:Generator_RowChangingName="LiquidationRowChanging" msprop:Generator_RowEvHandlerName="LiquidationRowChangeEventHandler" msprop:Generator_RowDeletedName="LiquidationRowDeleted" msprop:Generator_UserTableName="Liquidation" msprop:Generator_RowChangedName="LiquidationRowChanged" msprop:Generator_RowEvArgName="LiquidationRowChangeEvent" msprop:Generator_RowClassName="LiquidationRow">
+        <xs:element name="Liquidation" msprop:Generator_TableClassName="LiquidationDataTable" msprop:Generator_TableVarName="tableLiquidation" msprop:Generator_RowChangedName="LiquidationRowChanged" msprop:Generator_TablePropName="Liquidation" msprop:Generator_RowDeletingName="LiquidationRowDeleting" msprop:Generator_RowChangingName="LiquidationRowChanging" msprop:Generator_RowEvHandlerName="LiquidationRowChangeEventHandler" msprop:Generator_RowDeletedName="LiquidationRowDeleted" msprop:Generator_RowClassName="LiquidationRow" msprop:Generator_UserTableName="Liquidation" msprop:Generator_RowEvArgName="LiquidationRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="EquipmentNo" msprop:Generator_ColumnVarNameInTable="columnEquipmentNo" msprop:Generator_ColumnPropNameInRow="EquipmentNo" msprop:Generator_ColumnPropNameInTable="EquipmentNoColumn" msprop:Generator_UserColumnName="EquipmentNo" type="xs:string" minOccurs="0" />
@@ -53,6 +53,8 @@
               <xs:element name="P220" msprop:Generator_ColumnVarNameInTable="columnP220" msprop:Generator_ColumnPropNameInRow="P220" msprop:Generator_ColumnPropNameInTable="P220Column" msprop:Generator_UserColumnName="P220" type="xs:string" minOccurs="0" />
               <xs:element name="FromDate" msprop:Generator_ColumnVarNameInTable="columnFromDate" msprop:Generator_ColumnPropNameInRow="FromDate" msprop:Generator_ColumnPropNameInTable="FromDateColumn" msprop:Generator_UserColumnName="FromDate" type="xs:string" minOccurs="0" />
               <xs:element name="ToDate" msprop:Generator_ColumnVarNameInTable="columnToDate" msprop:Generator_ColumnPropNameInRow="ToDate" msprop:Generator_ColumnPropNameInTable="ToDateColumn" msprop:Generator_UserColumnName="ToDate" type="xs:string" minOccurs="0" />
+              <xs:element name="LubeTruck" msprop:Generator_ColumnVarNameInTable="columnLubeTruck" msprop:Generator_ColumnPropNameInRow="LubeTruck" msprop:Generator_ColumnPropNameInTable="LubeTruckColumn" msprop:Generator_UserColumnName="LubeTruck" type="xs:string" minOccurs="0" />
+              <xs:element name="Dispenser" msprop:Generator_ColumnVarNameInTable="columnDispenser" msprop:Generator_ColumnPropNameInRow="Dispenser" msprop:Generator_ColumnPropNameInTable="DispenserColumn" msprop:Generator_UserColumnName="Dispenser" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
