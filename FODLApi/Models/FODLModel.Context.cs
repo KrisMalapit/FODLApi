@@ -16,7 +16,7 @@ namespace FODLApi.Models
     public partial class FODLEntities : DbContext
     {
         public FODLEntities()
-            : base("name=FODLEntities")
+            : base("name=FODLEntitiesDev")
         {
         }
     
