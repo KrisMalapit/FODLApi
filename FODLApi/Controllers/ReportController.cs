@@ -130,10 +130,11 @@ namespace FODLApi.Controllers
                                  A.i.CreatedDate,
                                  Component = string.IsNullOrEmpty(B.Components.Name) ? "" : B.Components.Name,
                                  DescriptionLiquidation = string.IsNullOrEmpty(B.Items.DescriptionLiquidation) ? "" : B.Items.DescriptionLiquidation,
+                                 DieselFuel = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Items.No == "FO000001" ? B.VolumeQty : 0),
                                  EP2 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Items.No == "FO000287" ? B.VolumeQty : 0),
                                  Coolant = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Items.No == "FO000106" ? B.VolumeQty : 0),
                                  Signature = string.IsNullOrEmpty(A.i.Signature) ? "" : "Signed",
-                                 DieselFuel = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Items.No == "FO000001" ? B.VolumeQty : 0),
+                                
                                  E30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Engine" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
                                  E15W = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Engine" & B.Items.DescriptionLiquidation == "15W40" ? B.VolumeQty : 0),
                                  T30 = string.IsNullOrEmpty(B.VolumeQty.ToString()) ? 0 : (B.Components.Name == "Transmission" & B.Items.DescriptionLiquidation == "30" ? B.VolumeQty : 0),
@@ -158,6 +159,8 @@ namespace FODLApi.Controllers
                                  ToDate = rptVM.toDate
                                  ,A.i.LubeTruck,
                                  A.i.Dispenser
+                                 ,LubeId = rptVM.lube
+                                 ,DispenserId = rptVM.disp
 
                              }
                        );

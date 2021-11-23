@@ -1098,7 +1098,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -4408,9 +4407,6 @@
         <Height>0.5in</Height>
         <Width>7.01584in</Width>
         <ZIndex>1</ZIndex>
-        <Visibility>
-          <Hidden>true</Hidden>
-        </Visibility>
         <Style>
           <Border>
             <Style>None</Style>

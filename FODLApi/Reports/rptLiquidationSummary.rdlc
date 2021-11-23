@@ -4839,6 +4839,7 @@
             <TablixMember>
               <Group Name="EquipmentNo">
                 <GroupExpressions>
+                  <GroupExpression>=Fields!ReferenceNo.Value</GroupExpression>
                   <GroupExpression>=Fields!EquipmentNo.Value</GroupExpression>
                 </GroupExpressions>
               </Group>
@@ -4871,7 +4872,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>1.77716in</Height>
+    <Height>1.72508in</Height>
     <Style />
   </Body>
   <Width>13.5in</Width>
@@ -5063,7 +5064,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!LubeTruck.Value, "Liquidation")</Value>
+                  <Value>=IIF(Fields!DispenserId.Value = 1 , "-",First(Fields!Dispenser.Value, "Liquidation"))</Value>
                   <Style>
                     <FontSize>8pt</FontSize>
                   </Style>
@@ -5126,7 +5127,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!Dispenser.Value, "Liquidation")</Value>
+                  <Value>=IIF(Fields!LubeId.Value = 1 , "-",First(Fields!LubeTruck.Value, "Liquidation"))</Value>
                   <Style>
                     <FontSize>8pt</FontSize>
                   </Style>
@@ -5339,6 +5340,14 @@
         </Field>
         <Field Name="Dispenser">
           <DataField>Dispenser</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LubeId">
+          <DataField>LubeId</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DispenserId">
+          <DataField>DispenserId</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

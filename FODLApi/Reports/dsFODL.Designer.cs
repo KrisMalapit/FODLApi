@@ -359,6 +359,10 @@ namespace FODLApi.Reports {
             
             private global::System.Data.DataColumn columnDispenser;
             
+            private global::System.Data.DataColumn columnLubeId;
+            
+            private global::System.Data.DataColumn columnDispenserId;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public LiquidationDataTable() {
@@ -714,6 +718,22 @@ namespace FODLApi.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LubeIdColumn {
+                get {
+                    return this.columnLubeId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DispenserIdColumn {
+                get {
+                    return this.columnDispenserId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -789,7 +809,9 @@ namespace FODLApi.Reports {
                         string FromDate, 
                         string ToDate, 
                         string LubeTruck, 
-                        string Dispenser) {
+                        string Dispenser, 
+                        string LubeId, 
+                        string DispenserId) {
                 LiquidationRow rowLiquidationRow = ((LiquidationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         EquipmentNo,
@@ -831,7 +853,9 @@ namespace FODLApi.Reports {
                         FromDate,
                         ToDate,
                         LubeTruck,
-                        Dispenser};
+                        Dispenser,
+                        LubeId,
+                        DispenserId};
                 rowLiquidationRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowLiquidationRow);
                 return rowLiquidationRow;
@@ -894,6 +918,8 @@ namespace FODLApi.Reports {
                 this.columnToDate = base.Columns["ToDate"];
                 this.columnLubeTruck = base.Columns["LubeTruck"];
                 this.columnDispenser = base.Columns["Dispenser"];
+                this.columnLubeId = base.Columns["LubeId"];
+                this.columnDispenserId = base.Columns["DispenserId"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -979,6 +1005,10 @@ namespace FODLApi.Reports {
                 base.Columns.Add(this.columnLubeTruck);
                 this.columnDispenser = new global::System.Data.DataColumn("Dispenser", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDispenser);
+                this.columnLubeId = new global::System.Data.DataColumn("LubeId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLubeId);
+                this.columnDispenserId = new global::System.Data.DataColumn("DispenserId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDispenserId);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1761,6 +1791,38 @@ namespace FODLApi.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string LubeId {
+                get {
+                    try {
+                        return ((string)(this[this.tableLiquidation.LubeIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LubeId\' in table \'Liquidation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLiquidation.LubeIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string DispenserId {
+                get {
+                    try {
+                        return ((string)(this[this.tableLiquidation.DispenserIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DispenserId\' in table \'Liquidation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLiquidation.DispenserIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsEquipmentNoNull() {
                 return this.IsNull(this.tableLiquidation.EquipmentNoColumn);
             }
@@ -2237,6 +2299,30 @@ namespace FODLApi.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetDispenserNull() {
                 this[this.tableLiquidation.DispenserColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLubeIdNull() {
+                return this.IsNull(this.tableLiquidation.LubeIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLubeIdNull() {
+                this[this.tableLiquidation.LubeIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDispenserIdNull() {
+                return this.IsNull(this.tableLiquidation.DispenserIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDispenserIdNull() {
+                this[this.tableLiquidation.DispenserIdColumn] = global::System.Convert.DBNull;
             }
         }
         

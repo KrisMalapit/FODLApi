@@ -55,6 +55,8 @@
               <xs:element name="ToDate" msprop:Generator_ColumnVarNameInTable="columnToDate" msprop:Generator_ColumnPropNameInRow="ToDate" msprop:Generator_ColumnPropNameInTable="ToDateColumn" msprop:Generator_UserColumnName="ToDate" type="xs:string" minOccurs="0" />
               <xs:element name="LubeTruck" msprop:Generator_ColumnVarNameInTable="columnLubeTruck" msprop:Generator_ColumnPropNameInRow="LubeTruck" msprop:Generator_ColumnPropNameInTable="LubeTruckColumn" msprop:Generator_UserColumnName="LubeTruck" type="xs:string" minOccurs="0" />
               <xs:element name="Dispenser" msprop:Generator_ColumnVarNameInTable="columnDispenser" msprop:Generator_ColumnPropNameInRow="Dispenser" msprop:Generator_ColumnPropNameInTable="DispenserColumn" msprop:Generator_UserColumnName="Dispenser" type="xs:string" minOccurs="0" />
+              <xs:element name="LubeId" msprop:Generator_ColumnVarNameInTable="columnLubeId" msprop:Generator_ColumnPropNameInRow="LubeId" msprop:Generator_ColumnPropNameInTable="LubeIdColumn" msprop:Generator_UserColumnName="LubeId" type="xs:string" minOccurs="0" />
+              <xs:element name="DispenserId" msprop:Generator_ColumnVarNameInTable="columnDispenserId" msprop:Generator_ColumnPropNameInRow="DispenserId" msprop:Generator_ColumnPropNameInTable="DispenserIdColumn" msprop:Generator_UserColumnName="DispenserId" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
